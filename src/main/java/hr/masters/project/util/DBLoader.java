@@ -1,0 +1,100 @@
+package hr.masters.project.util;
+
+import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
+
+import hr.masters.project.model.RoleModel;
+import hr.masters.project.model.UserModel;
+import hr.masters.project.repository.RoleRepository;
+import hr.masters.project.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+
+@Service
+public class DBLoader
+{
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Transactional
+    @PostConstruct
+    public void initData()
+    {
+        final RoleModel adminRole = createRole(Constants.Roles.ADMIN);
+        final RoleModel userRole = createRole(Constants.Roles.USER);
+        createUser(
+                "Jura",
+                "Baksa",
+                "admin",
+                encodePassword("admin"),
+                "admin@mail.hr",
+                10000,
+                adminRole
+        );
+        createUser(
+                "Matija",
+                "Baksa",
+                "user1",
+                encodePassword("user1"),
+                "user1@mail.hr",
+                1000,
+                userRole
+        );
+        createUser(
+                "Diva",
+                "Baksa",
+                "user2",
+                encodePassword("user2"),
+                "user2@mail.hr",
+                2000,
+                userRole
+        );
+    }
+
+    @Transactional
+    public RoleModel createRole(final String rolename)
+    {
+        RoleModel role = roleRepository.findByRole(rolename);
+        if (ObjectUtils.isEmpty(role))
+        {
+            role = new RoleModel(rolename);
+            role.setRole(rolename);
+            roleRepository.save(role);
+        }
+        return role;
+    }
+
+    @Transactional
+    public void createUser(
+            final String name,
+            final String surname,
+            final String username,
+            final String password,
+            final String email,
+            final int balance,
+            final RoleModel role)
+    {
+        final UserModel user = new UserModel();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setName(name);
+        user.setSurname(surname);
+        user.setEmail(email);
+        user.setRole(role);
+        user.setBalance(balance);
+        userService.saveUser(user);
+    }
+
+    private String encodePassword(final String rawPassword)
+    {
+        return bCryptPasswordEncoder.encode(rawPassword);
+    }
+}

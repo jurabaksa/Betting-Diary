@@ -1,0 +1,130 @@
+package hr.masters.project.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "users", schema = "betting_diary_db")
+public class UserModel
+{
+    @Id
+    @GeneratedValue
+    private long id;
+
+    @Column(nullable = false)
+    private String name;
+    private String surname;
+    private String email;
+    private String username;
+    private String password;
+    private int balance;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    @JsonIgnore
+    private RoleModel role;
+
+    public UserModel()
+    {
+
+    }
+
+    public UserModel(final UserModel user)
+    {
+        this.id = user.getId();
+        this.name = user.getName();
+        this.surname = user.getSurname();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.balance = user.getBalance();
+        this.role = user.getRole();
+    }
+
+    public long getId()
+    {
+        return id;
+    }
+
+    public void setId(final long id)
+    {
+        this.id = id;
+    }
+
+    public String getName()
+    {
+        return this.name;
+    }
+
+    public void setName(final String name)
+    {
+        this.name = name;
+    }
+
+    public String getSurname()
+    {
+        return this.surname;
+    }
+
+    public void setSurname(final String surname)
+    {
+        this.surname = surname;
+    }
+
+    public String getEmail()
+    {
+        return this.email;
+    }
+
+    public void setEmail(final String email)
+    {
+        this.email = email;
+    }
+
+    public String getUsername()
+    {
+        return this.username;
+    }
+
+    public void setUsername(final String username)
+    {
+        this.username = username;
+    }
+
+    public String getPassword()
+    {
+        return this.password;
+    }
+
+    public void setPassword(final String password)
+    {
+        this.password = password;
+    }
+
+    public int getBalance()
+    {
+        return this.balance;
+    }
+
+    public void setBalance(final int balance)
+    {
+        this.balance = balance;
+    }
+
+    public RoleModel getRole()
+    {
+        return this.role;
+    }
+
+    public void setRole(final RoleModel role)
+    {
+        this.role = role;
+    }
+}
