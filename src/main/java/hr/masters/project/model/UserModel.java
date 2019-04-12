@@ -26,6 +26,7 @@ public class UserModel
     private String username;
     private String password;
     private int balance;
+    private boolean enabled;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
@@ -46,6 +47,7 @@ public class UserModel
         this.password = user.getPassword();
         this.balance = user.getBalance();
         this.role = user.getRole();
+        this.enabled = false;
     }
 
     public long getId()
@@ -126,5 +128,15 @@ public class UserModel
     public void setRole(final RoleModel role)
     {
         this.role = role;
+    }
+
+    public boolean isEnabled()
+    {
+        return enabled;
+    }
+
+    public void setEnabled(final boolean enabled)
+    {
+        this.enabled = enabled;
     }
 }

@@ -86,7 +86,13 @@ public class DBLoader
             final int balance,
             final RoleModel role)
     {
-        UserModel user = userRepository.findByUsername(username).get();
+
+        UserModel user = null;
+        if (userRepository.findByUsername(username).isPresent())
+        {
+            user = userRepository.findByUsername(username).get();
+        }
+
         if (ObjectUtils.isEmpty(user))
         {
             user = new UserModel();
