@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController
 {
-    @RequestMapping(Constants.Fragments.HOME_USER)
+    @RequestMapping(Constants.Paths.HOME_USER)
     public ModelAndView displayAuthenticatedHome()
     {
         final ModelAndView modelAndView = new ModelAndView();
@@ -16,7 +16,7 @@ public class HomeController
         return modelAndView;
     }
 
-    @RequestMapping(Constants.Fragments.BOOTSTRAP)
+    @RequestMapping(Constants.Paths.BOOTSTRAP)
     public ModelAndView displayBootstrapDesignSample()
     {
         final ModelAndView modelAndView = new ModelAndView();

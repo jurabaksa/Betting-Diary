@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController
 {
-    @RequestMapping(value = Constants.Fragments.HOME)
+    @RequestMapping(value = Constants.Paths.HOME)
     public ModelAndView authenticateUser()
     {
         final ModelAndView modelAndView = new ModelAndView();
@@ -23,7 +23,7 @@ public class LoginController
         return modelAndView;
     }
 
-    @RequestMapping(Constants.Fragments.LOGOUT)
+    @RequestMapping(Constants.Paths.LOGOUT)
     public ModelAndView logoutUser()
     {
         final ModelAndView modelAndView = new ModelAndView();

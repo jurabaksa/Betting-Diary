@@ -35,14 +35,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
     protected void configure(final HttpSecurity http) throws Exception
     {
         http.csrf().disable().
-                authorizeRequests().antMatchers(Constants.Fragments.HOME_USER)
+                authorizeRequests().antMatchers(Constants.Paths.HOME_USER)
             .authenticated().anyRequest().permitAll()
             .and()//
-            .formLogin().loginPage(Constants.Fragments.HOME)//
-            .defaultSuccessUrl(Constants.Fragments.HOME_USER)//
+            .formLogin().loginPage(Constants.Paths.HOME)//
+            .defaultSuccessUrl(Constants.Paths.HOME_USER)//
             .permitAll().and()//
-            .logout().logoutUrl(Constants.Fragments.LOGOUT)//
-            .logoutSuccessUrl(Constants.Fragments.HOME);
+            .logout().logoutUrl(Constants.Paths.LOGOUT)//
+            .logoutSuccessUrl(Constants.Paths.HOME);
     }
 
     @Bean

@@ -2,7 +2,7 @@ package hr.masters.project.util;
 
 public interface Constants
 {
-    interface Fragments
+    interface Paths
     {
         String HOME = "/";
 
@@ -33,10 +33,6 @@ public interface Constants
         String ADMIN = "ADMIN";
 
         String USER = "USER";
-
-        String ANT_ADMIN = "**/admin/**";
-
-        String ANT_USER = "**/user/**";
     }
 
     interface Exceptions
