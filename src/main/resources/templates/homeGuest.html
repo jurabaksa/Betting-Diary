@@ -1,10 +1,10 @@
 <!doctype html>
-<html class="no-js" lang="" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html class="no-js" lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
+    <title th:text="#{homeGuest.title}"></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -89,17 +89,13 @@
 </form>
 <!-- End Realtime sts area-->
 <!-- Start Footer area-->
-<div class="footer-copyright-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="footer-copy-right">
-                    <p>Welcome, fellow guest.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<form action="/" id="langform">
+    <select name="lang" form="langform" onchange="this.form.submit()">
+        <option th:text="#{lang.change}"></option>
+        <option value="en" th:text="#{lang.en}"></option>
+        <option value="hr" th:text="#{lang.hr}"></option>
+    </select>
+</form>
 <!-- End Footer area-->
 <!-- jquery
     ============================================ -->

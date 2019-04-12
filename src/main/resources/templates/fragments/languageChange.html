@@ -1,0 +1,7 @@
+<form action="/" id="langform">
+    <select name="lang" form="langform" onchange="this.form.submit()">
+        <option th:text="#{lang.change}"></option>
+        <option value="en" th:text="#{lang.en}"></option>
+        <option value="hr" th:text="#{lang.hr}"></option>
+    </select>
+</form>
