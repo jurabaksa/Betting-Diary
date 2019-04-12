@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import hr.masters.project.model.RoleModel;
 import hr.masters.project.model.UserModel;
 import hr.masters.project.repository.RoleRepository;
+import hr.masters.project.repository.UserRepository;
 import hr.masters.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,11 +23,14 @@ public class DBLoader
     private RoleRepository roleRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
     @PostConstruct
-    public void initData()
+    public void initializeTestUsers()
     {
         final RoleModel adminRole = createRole(Constants.Roles.ADMIN);
         final RoleModel userRole = createRole(Constants.Roles.USER);
@@ -82,15 +86,19 @@ public class DBLoader
             final int balance,
             final RoleModel role)
     {
-        final UserModel user = new UserModel();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setName(name);
-        user.setSurname(surname);
-        user.setEmail(email);
-        user.setRole(role);
-        user.setBalance(balance);
-        userService.saveUser(user);
+        UserModel user = userRepository.findByUsername(username).get();
+        if (ObjectUtils.isEmpty(user))
+        {
+            user = new UserModel();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setName(name);
+            user.setSurname(surname);
+            user.setEmail(email);
+            user.setRole(role);
+            user.setBalance(balance);
+            userService.saveUser(user);
+        }
     }
 
     private String encodePassword(final String rawPassword)

@@ -1,7 +1,8 @@
 package hr.masters.project.controller;
 
+import hr.masters.project.service.UserService;
 import hr.masters.project.util.Constants;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController
 {
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = Constants.Fragments.HOME)
     public ModelAndView authenticateUser()
@@ -28,11 +31,9 @@ public class HomeController
         return modelAndView;
     }
 
-    //@PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     @RequestMapping(Constants.Fragments.HOME_USER)
     public ModelAndView displayAuthenticatedHome()
     {
-        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(Constants.Pages.HOME_USER);
         return modelAndView;

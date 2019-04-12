@@ -26,6 +26,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService
         {
             throw new UsernameNotFoundException(Constants.Exceptions.NOUSERNAME);
         }
+
         return optionalUser.map(user -> new AccountDetailsModel(user)).get();
     }
 }
