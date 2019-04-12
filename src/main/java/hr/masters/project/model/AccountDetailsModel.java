@@ -56,6 +56,6 @@ public class AccountDetailsModel extends UserModel implements UserDetails
     @Override
     public boolean isEnabled()
     {
-        return super.isEnabled();
+        return true;
     }
 }
