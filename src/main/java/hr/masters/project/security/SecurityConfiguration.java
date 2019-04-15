@@ -38,11 +38,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
                 authorizeRequests().antMatchers(Constants.Paths.HOME_USER)
             .authenticated().anyRequest().permitAll()
             .and()//
-            .formLogin().loginPage(Constants.Paths.HOME)//
+            .formLogin().loginPage(Constants.Paths.LOGIN)//
             .defaultSuccessUrl(Constants.Paths.HOME_USER)//
             .permitAll().and()//
             .logout().logoutUrl(Constants.Paths.LOGOUT)//
-            .logoutSuccessUrl(Constants.Paths.HOME);
+            .logoutSuccessUrl(Constants.Paths.LOGIN);
     }
 
     @Bean

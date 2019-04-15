@@ -4,13 +4,23 @@ public interface Constants
 {
     interface Paths
     {
-        String HOME = "/";
+        String EMPTY = "/";
+
+        String INDEX = "/index";
 
         String HOME_USER = "/home";
 
-        String BOOTSTRAP = "/bootstrap";
+        String LOGIN = "/login";
 
         String LOGOUT = "/logout";
+
+        String REGISTER = "/register";
+
+        String FORGOT = "/forgot";
+
+        String ERROR = "/error";
+
+        String BOOTSTRAP = "/bootstrap";
 
     }
 
@@ -21,6 +31,8 @@ public interface Constants
         String HOME_USER = "homeUser";
 
         String BOOTSTRAP = "bootstrap";
+
+        String ERROR = "error";
 
     }
 

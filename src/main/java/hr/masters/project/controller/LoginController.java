@@ -10,7 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController
 {
-    @RequestMapping(value = Constants.Paths.HOME)
+
+    @RequestMapping(value = { Constants.Paths.LOGIN, Constants.Paths.INDEX, Constants.Paths.EMPTY })
     public ModelAndView authenticateUser()
     {
         final ModelAndView modelAndView = new ModelAndView();

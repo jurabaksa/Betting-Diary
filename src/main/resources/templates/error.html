@@ -1,0 +1,26 @@
+<!doctype html>
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title th:text="#{error.title}"></title>
+    <th:block th:insert="fragments/_links"/>
+</head>
+
+<body>
+<!-- 404 Page area Start-->
+<div class="error-page-area">
+    <div class="error-page-wrap">
+        <i class="notika-icon notika-close"></i>
+        <h2 th:text="#{error.shout}"><span class="counter">404</span></h2>
+        <p th:text="#{error.message}"></p>
+        <a href="/home" class="btn" th:text="#{homeUser.title}"></a>
+    </div>
+</div>
+<!-- 404 Page area End-->
+<th:block th:insert="fragments/_scripts"/>
+
+</body>
+
+</html>
