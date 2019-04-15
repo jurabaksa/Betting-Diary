@@ -1,7 +1,7 @@
 <form xmlns:th="http://www.thymeleaf.org" action="#" id="langform">
     <select name="lang" form="langform" onchange="this.form.submit()">
-        <option selected disabled th:text="#{lang.change}"></option>
-        <option value="en" th:text="#{lang.en}"></option>
-        <option value="hr" th:text="#{lang.hr}"></option>
+        <option selected disabled th:text="#{language.changeMessage}"></option>
+        <option value="en" th:text="#{language.en}"></option>
+        <option value="hr" th:text="#{language.hr}"></option>
     </select>
 </form>

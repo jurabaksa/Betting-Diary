@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title th:text="#{homeGuest.title}"></title>
+    <title th:text="#{page.homeGuest.title}"></title>
     <th:block th:insert="fragments/_links"/>
 </head>
 
@@ -21,24 +21,24 @@
                 <div class="input-group">
                     <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
                     <div class="nk-int-st">
-                        <input id="username" name="username" type="text" class="form-control" th:placeholder="#{username}">
+                        <input id="username" name="username" type="text" class="form-control" th:placeholder="#{placeholder.username}">
                     </div>
                 </div>
                 <div class="input-group mg-t-15">
                     <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-edit"></i></span>
                     <div class="nk-int-st">
-                        <input id="password" name="password" type="password" class="form-control" th:placeholder="#{password}">
+                        <input id="password" name="password" type="password" class="form-control" th:placeholder="#{placeholder.password}">
                     </div>
                 </div>
                 <a href="#l-register" data-ma-action="nk-login-switch" data-ma-block="#l-register" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></a>
                 <br>
-                <button class="btn btn-success notika-btn-success" type="submit" th:text="#{submit}"></button>
+                <button class="btn btn-success notika-btn-success" type="submit" th:text="#{button.submit}"></button>
             </form>
         </div>
 
         <div class="nk-navigation nk-lg-ic">
-            <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-register"><i class="notika-icon notika-plus-symbol"></i> <span th:text="#{register}"></span></a>
-            <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-forget-password"><i>?</i> <span th:text="#{forgot.password}"></span></a>
+            <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-register"><i class="notika-icon notika-plus-symbol"></i> <span th:text="#{button.register}"></span></a>
+            <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-forget-password"><i>?</i> <span th:text="#{button.forgotPassword}"></span></a>
         </div>
     </div>
     <!-- Register -->
@@ -46,37 +46,37 @@
         <a href="#"><img src="img/logo/logo-large.png" alt=""/></a>
         <br><br><br>
         <div class="nk-form">
-            <form action="/register" method="POST">
+            <form action="/register" method="POST" th:object="${NewUserForm}">
                 <div class="input-group">
                     <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
                     <div class="nk-int-st">
-                        <input type="text" class="form-control" th:placeholder="#{username}">
+                        <input type="text" class="form-control" name="username" th:placeholder="#{placeholder.username}">
                     </div>
                 </div>
 
                 <div class="input-group mg-t-15">
                     <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-mail"></i></span>
                     <div class="nk-int-st">
-                        <input type="text" class="form-control" th:placeholder="#{email}">
+                        <input type="text" class="form-control" name="email" th:placeholder="#{placeholder.email}">
                     </div>
                 </div>
 
                 <div class="input-group mg-t-15">
                     <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-edit"></i></span>
                     <div class="nk-int-st">
-                        <input type="password" class="form-control" th:placeholder="#{password}">
+                        <input type="password" class="form-control" name="password" th:placeholder="#{placeholder.password}">
                     </div>
                 </div>
 
                 <a href="#l-login" data-ma-action="nk-login-switch" data-ma-block="#l-login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow"></i></a>
                 <br>
-                <button class="btn btn-success notika-btn-success" type="submit" th:text="#{submit}"></button>
+                <button class="btn btn-success notika-btn-success" type="submit" th:text="#{button.submit}"></button>
             </form>
         </div>
 
         <div class="nk-navigation rg-ic-stl">
-            <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-login"><i class="notika-icon notika-right-arrow"></i> <span th:text="#{sign.in}"></span></a>
-            <a href="" data-ma-action="nk-login-switch" data-ma-block="#l-forget-password"><i>?</i> <span th:text="#{forgot.password}"></span></a>
+            <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-login"><i class="notika-icon notika-right-arrow"></i> <span th:text="#{button.signIn}"></span></a>
+            <a href="" data-ma-action="nk-login-switch" data-ma-block="#l-forget-password"><i>?</i> <span th:text="#{button.forgotPassword}"></span></a>
         </div>
     </div>
 
@@ -87,24 +87,24 @@
         <div class="nk-form">
             <form action="/forgot" method="POST">
 
-                <p class="text-left" th:text="#{forgot.message}"></p>
+                <p class="text-left" th:text="#{message.forgotPassword}"></p>
 
                 <div class="input-group">
                     <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-mail"></i></span>
                     <div class="nk-int-st">
-                        <input type="text" class="form-control" th:placeholder="#{email}">
+                        <input type="text" class="form-control" th:placeholder="#{placeholder.email}">
                     </div>
                 </div>
 
                 <a href="#l-login" data-ma-action="nk-login-switch" data-ma-block="#l-login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow"></i></a>
                 <br>
-                <button class="btn btn-success notika-btn-success" type="submit" th:text="#{submit}"></button>
+                <button class="btn btn-success notika-btn-success" type="submit" th:text="#{button.submit}"></button>
             </form>
         </div>
 
         <div class="nk-navigation nk-lg-ic rg-ic-stl">
-            <a href="" data-ma-action="nk-login-switch" data-ma-block="#l-login"><i class="notika-icon notika-right-arrow"></i> <span th:text="#{sign.in}"></span></a>
-            <a href="" data-ma-action="nk-login-switch" data-ma-block="#l-register"><i class="notika-icon notika-plus-symbol"></i> <span th:text="#{register}"></span></a>
+            <a href="" data-ma-action="nk-login-switch" data-ma-block="#l-login"><i class="notika-icon notika-right-arrow"></i> <span th:text="#{button.signIn}"></span></a>
+            <a href="" data-ma-action="nk-login-switch" data-ma-block="#l-register"><i class="notika-icon notika-plus-symbol"></i> <span th:text="#{button.register}"></span></a>
         </div>
     </div>
 </div>
