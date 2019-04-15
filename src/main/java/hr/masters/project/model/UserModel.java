@@ -1,9 +1,7 @@
 package hr.masters.project.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,14 +14,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class UserModel
 {
     @Id
-    @GeneratedValue
-    private long id;
-
-    @Column(nullable = false)
+    private String username;
     private String name;
     private String surname;
     private String email;
-    private String username;
     private String password;
     private int balance;
     private boolean enabled;
@@ -40,7 +34,6 @@ public class UserModel
 
     public UserModel(final UserModel user)
     {
-        this.id = user.getId();
         this.name = user.getName();
         this.surname = user.getSurname();
         this.email = user.getEmail();
@@ -48,16 +41,6 @@ public class UserModel
         this.balance = user.getBalance();
         this.role = user.getRole();
         this.enabled = false;
-    }
-
-    public long getId()
-    {
-        return id;
-    }
-
-    public void setId(final long id)
-    {
-        this.id = id;
     }
 
     public String getName()

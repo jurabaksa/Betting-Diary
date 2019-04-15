@@ -12,7 +12,7 @@ public class NewUserForm
 
     @NotNull(message = "{message.emptyField")
     @NotBlank(message = "{message.emptyField}")
-    @Email(message = "{registration.mail}")
+    @Email(message = "{message.emailFormat}")
     private String email;
 
     @NotNull(message = "{message.emptyField}")

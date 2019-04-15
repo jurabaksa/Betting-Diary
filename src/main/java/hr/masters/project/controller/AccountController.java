@@ -1,11 +1,15 @@
 package hr.masters.project.controller;
 
+import hr.masters.project.facades.UserFacade;
 import hr.masters.project.forms.NewUserForm;
 import hr.masters.project.util.Constants;
+import hr.masters.project.validators.RegistrationValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +21,12 @@ import javax.validation.Valid;
 public class AccountController
 {
     private static final String USER_FORM_ATTRIBUTE = "NewUserForm";
+
+    @Autowired
+    private UserFacade userFacade;
+
+    @Autowired
+    private RegistrationValidator registrationValidator;
 
     @RequestMapping(value = { Constants.Paths.LOGIN, Constants.Paths.INDEX, Constants.Paths.EMPTY })
     public ModelAndView authenticateUser()
@@ -38,14 +48,19 @@ public class AccountController
             final NewUserForm newUserForm, final BindingResult bindingResult)
     {
         final ModelAndView modelAndView = new ModelAndView();
+        ValidationUtils.invokeValidator(registrationValidator, newUserForm, bindingResult);
 
-        System.out.println(newUserForm.getUsername() + " " + newUserForm.getPassword() + " " + newUserForm.getEmail());
-        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
+        if (bindingResult.hasErrors())
         {
-            modelAndView.setViewName(Constants.Pages.HOME_USER);
-            return modelAndView;
+            modelAndView.getModelMap().addAttribute(USER_FORM_ATTRIBUTE, newUserForm);
+            modelAndView.setViewName(Constants.Pages.HOME_GUEST);
         }
-        modelAndView.setViewName(Constants.Pages.HOME_GUEST);
+        else
+        {
+            userFacade.createUser(newUserForm);
+            modelAndView.setViewName(Constants.Pages.HOME_GUEST);
+        }
+
         return modelAndView;
     }
 
@@ -53,11 +68,6 @@ public class AccountController
     public ModelAndView generateNewPassword()
     {
         final ModelAndView modelAndView = new ModelAndView();
-        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
-        {
-            modelAndView.setViewName(Constants.Pages.HOME_USER);
-            return modelAndView;
-        }
         modelAndView.setViewName(Constants.Pages.HOME_GUEST);
         return modelAndView;
     }

@@ -10,7 +10,7 @@ public interface UserService
 
     Optional<UserModel> findByUsername(String username);
 
-    UserModel findByEmail(String email);
+    Optional<UserModel> findByEmail(String email);
 
     UserModel saveUser(UserModel user);
 
