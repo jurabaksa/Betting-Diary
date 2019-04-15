@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
             .defaultSuccessUrl(Constants.Paths.HOME_USER)//
             .permitAll().and()//
             .logout().logoutUrl(Constants.Paths.LOGOUT)//
-            .logoutSuccessUrl(Constants.Paths.LOGIN);
+            .logoutSuccessUrl(Constants.Paths.EMPTY);
     }
 
     @Bean
