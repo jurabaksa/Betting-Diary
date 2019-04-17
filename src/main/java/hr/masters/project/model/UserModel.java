@@ -1,13 +1,8 @@
 package hr.masters.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users", schema = "betting_diary_db")
@@ -15,10 +10,10 @@ public class UserModel
 {
     @Id
     private String username;
-    private String name;
-    private String surname;
     private String email;
     private String password;
+    private String name;
+    private String surname;
     private int balance;
     private boolean enabled;
 
