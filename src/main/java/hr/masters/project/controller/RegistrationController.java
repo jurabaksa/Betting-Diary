@@ -16,31 +16,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class AccountController
+public class RegistrationController
 {
     private static final String USER_FORM_ATTRIBUTE = "NewUserForm";
 
     @Autowired
-    private UserFacade userFacade;
-
-    @Autowired
     private RegistrationValidator registrationValidator;
 
-    //LOGIN GET
-    @RequestMapping(value = { Constants.Paths.LOGIN, Constants.Paths.INDEX, Constants.Paths.EMPTY })
-    public ModelAndView authenticateUser()
-    {
-        final ModelAndView modelAndView = new ModelAndView();
-        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
-        {
-            modelAndView.setViewName(Constants.Pages.HOME_USER);
-            return modelAndView;
-        }
-        modelAndView.setViewName(Constants.Pages.LOGIN);
-        return modelAndView;
-    }
+    @Autowired
+    private UserFacade userFacade;
 
-    //REGISTRATION GET
     @RequestMapping(value = Constants.Paths.REGISTER, method = RequestMethod.GET)
     public ModelAndView showRegistrationForm()
     {
@@ -55,7 +40,6 @@ public class AccountController
         return modelAndView;
     }
 
-    //REGISTRATION POST
     @RequestMapping(value = Constants.Paths.REGISTER, method = RequestMethod.POST)
     public ModelAndView registerUser(
             @ModelAttribute(USER_FORM_ATTRIBUTE)
@@ -79,7 +63,6 @@ public class AccountController
         return modelAndView;
     }
 
-    //SUCCESSFUL REGISTRATION GET
     @RequestMapping(value = Constants.Paths.REGISTRATION_SUCCESS, method = RequestMethod.GET)
     public ModelAndView showSuccessfulRegistration()
     {
@@ -92,36 +75,4 @@ public class AccountController
         modelAndView.setViewName(Constants.Pages.REGISTRATION_SUCCESS);
         return modelAndView;
     }
-
-    //FORGOT PASSWORD GET
-    @RequestMapping(value = Constants.Paths.FORGOT, method = RequestMethod.GET)
-    public ModelAndView showForgotPasswordForm()
-    {
-        final ModelAndView modelAndView = new ModelAndView();
-        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
-        {
-            modelAndView.setViewName(Constants.Pages.HOME_USER);
-            return modelAndView;
-        }
-        modelAndView.setViewName(Constants.Pages.FORGOT_PASSWORD);
-        return modelAndView;
-    }
-
-    //FORGOT PASSWORD POST
-    @RequestMapping(value = Constants.Paths.FORGOT, method = RequestMethod.POST)
-    public ModelAndView generateNewPassword()
-    {
-        final ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(Constants.Pages.LOGIN);
-        return modelAndView;
-    }
-
-    @RequestMapping(Constants.Paths.LOGOUT)
-    public ModelAndView logoutUser()
-    {
-        final ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(Constants.Pages.LOGIN);
-        return modelAndView;
-    }
-
 }
