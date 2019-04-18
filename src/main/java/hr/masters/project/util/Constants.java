@@ -14,9 +14,11 @@ public interface Constants
 
         String LOGOUT = "/logout";
 
-        String REGISTER = "/register";
+        String REGISTER = "/registration";
 
-        String FORGOT = "/forgot";
+        String REGISTRATION_SUCCESS = "/registrationSuccess";
+
+        String FORGOT = "/forgotPassword";
 
         String ERROR = "/error";
 
@@ -26,7 +28,13 @@ public interface Constants
 
     interface Pages
     {
-        String HOME_GUEST = "homeGuest";
+        String REGISTRATION = "registration";
+
+        String REGISTRATION_SUCCESS = "registrationSuccess";
+
+        String LOGIN = "login";
+
+        String FORGOT_PASSWORD = "forgotPassword";
 
         String HOME_USER = "homeUser";
 

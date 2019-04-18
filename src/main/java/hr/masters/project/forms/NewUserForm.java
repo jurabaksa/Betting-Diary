@@ -1,22 +1,9 @@
 package hr.masters.project.forms;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
 public class NewUserForm
 {
-    @NotNull(message = "{message.emptyField}")
-    @NotBlank(message = "{message.emptyField}")
     private String username;
-
-    @NotNull(message = "{message.emptyField")
-    @NotBlank(message = "{message.emptyField}")
-    @Email(message = "{message.emailFormat}")
     private String email;
-
-    @NotNull(message = "{message.emptyField}")
-    @NotBlank(message = "{message.emptyField}")
     private String password;
 
     public String getUsername()

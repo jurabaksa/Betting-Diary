@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Component
 public class RegistrationValidator implements Validator
 {
@@ -24,23 +27,34 @@ public class RegistrationValidator implements Validator
     {
         final NewUserForm newUserForm = (NewUserForm) o;
 
-        final String newUserUsername = newUserForm.getUsername();
-        if (this.userService.findByUsername(newUserUsername).isPresent())
+        if (this.userService.findByUsername(newUserForm.getUsername()).isPresent())
         {
             errors.rejectValue("username", "error.username.exists");
         }
 
-        final String newUserMail = newUserForm.getEmail();
-        if (this.userService.findByEmail(newUserMail).isPresent())
+        if (newUserForm.getUsername().length() < 5)
+        {
+            errors.rejectValue("username", "error.username.length");
+        }
+
+        if (this.userService.findByEmail(newUserForm.getEmail()).isPresent())
         {
             errors.rejectValue("email", "error.email.exists");
         }
 
-        final String newUserPassword = newUserForm.getPassword();
-
-        if (newUserPassword.length() < 6)
+        final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile(
+                "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+                Pattern.CASE_INSENSITIVE
+        );
+        final Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(newUserForm.getEmail());
+        if (!matcher.find())
         {
-            errors.rejectValue("password", "error.password.length)");
+            errors.rejectValue("email", "error.email.message");
+        }
+
+        if (newUserForm.getPassword().length() < 6)
+        {
+            errors.rejectValue("password", "error.password.length");
         }
     }
 }

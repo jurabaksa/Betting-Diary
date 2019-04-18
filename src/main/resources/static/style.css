@@ -3436,6 +3436,7 @@ textarea.auto-size {
 	box-shadow:none;
 	border-radius:0px;
 }
+
 .nk-container .input-group-addon{
 	border: 0px solid #ccc;
 	background-color: #fff;
@@ -4632,3 +4633,7 @@ body.box-layout {
 /*----------------------------------------*/
 .mCS-light-1.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ background-color: #00c292; }
 .mCS-light-1.mCSB_scrollTools .mCSB_draggerRail{ background-color: #ccc; }
+
+.error-message{
+    color: red;
+}
