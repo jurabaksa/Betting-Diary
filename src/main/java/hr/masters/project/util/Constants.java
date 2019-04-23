@@ -8,7 +8,7 @@ public interface Constants
 
         String INDEX = "/index";
 
-        String HOME_USER = "/home";
+        String HOME = "/home";
 
         String LOGIN = "/login";
 
@@ -21,6 +21,18 @@ public interface Constants
         String FORGOT_PASSWORD = "/forgotPassword";
 
         String NEW_PASSWORD_SUCCESS = "/newPasswordSuccess";
+
+        String MY_TICKETS = "/myTickets";
+
+        String ADD_TICKET = "/addTicket";
+
+        String VISUAL_STATS = "/visualStats";
+
+        String WINNINGS_HISTORY = "/winningsHistory";
+
+        String PDF_EXPORT = "/pdfExport";
+
+        String PROFILE_SETTINGS = "/profileSettings";
 
         String ERROR = "/error";
 
@@ -52,7 +64,19 @@ public interface Constants
 
         String NEW_PASSWORD_SUCCESS = "newPasswordSuccess";
 
-        String HOME_USER = "homeUser";
+        String MY_TICKETS = "myTickets";
+
+        String ADD_TICKET = "addTicket";
+
+        String VISUAL_STATS = "visualStats";
+
+        String WINNINGS_HISTORY = "winningsHistory";
+
+        String PDF_EXPORT = "pdfExport";
+
+        String PROFILE_SETTINGS = "profileSettings";
+
+        String HOME = "home";
 
         String BOOTSTRAP = "bootstrap";
 

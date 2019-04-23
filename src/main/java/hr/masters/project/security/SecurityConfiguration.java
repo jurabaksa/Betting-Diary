@@ -54,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
             .anyRequest().authenticated()
             .and()//
             .formLogin().loginPage(Constants.Paths.LOGIN)//
-            .defaultSuccessUrl(Constants.Paths.HOME_USER)//
+            .defaultSuccessUrl(Constants.Paths.HOME)//
             .permitAll().and()//
             .logout().logoutUrl(Constants.Paths.LOGOUT)//
             .logoutSuccessUrl(Constants.Paths.EMPTY);

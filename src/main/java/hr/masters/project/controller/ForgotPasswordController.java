@@ -32,7 +32,7 @@ public class ForgotPasswordController
         final ModelAndView modelAndView = new ModelAndView();
         if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
         {
-            modelAndView.setViewName(Constants.Pages.HOME_USER);
+            modelAndView.setViewName(Constants.Pages.HOME);
             return modelAndView;
         }
         modelAndView.setViewName(Constants.Pages.FORGOT_PASSWORD);
@@ -68,7 +68,7 @@ public class ForgotPasswordController
         final ModelAndView modelAndView = new ModelAndView();
         if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
         {
-            modelAndView.setViewName(Constants.Pages.HOME_USER);
+            modelAndView.setViewName(Constants.Pages.HOME);
             return modelAndView;
         }
         modelAndView.setViewName(Constants.Pages.NEW_PASSWORD_SUCCESS);

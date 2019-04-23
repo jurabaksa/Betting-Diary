@@ -8,11 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController
 {
-    @RequestMapping(Constants.Paths.HOME_USER)
+    @RequestMapping(Constants.Paths.HOME)
     public ModelAndView displayAuthenticatedHome()
     {
         final ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(Constants.Pages.HOME_USER);
+        modelAndView.setViewName(Constants.Pages.HOME);
         return modelAndView;
     }
 
