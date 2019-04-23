@@ -15,7 +15,9 @@
     <!-- Register -->
     <div class="nk-block toggled" id="l-register">
         <a href="#"><img src="img/logo/logo-large.png" alt=""/></a>
-        <br><br><br>
+        <br><br>
+        <th:block th:insert="fragments/_languageChange"/>
+        <br>
         <div class="nk-form">
             <form action="#" method="POST" th:action="@{/registration}" th:object="${NewUserForm}">
                 <div class="input-group">

@@ -15,7 +15,9 @@
     <!-- Login -->
     <div class="nk-block toggled" id="l-login">
         <a href="#"><img src="img/logo/logo-large.png" alt=""/></a>
-        <br><br><br>
+        <br><br>
+        <th:block th:insert="fragments/_languageChange"/>
+        <br>
         <div class="nk-form">
             <form action="/login" method="POST">
                 <div class="input-group">
@@ -42,8 +44,8 @@
             <a href="registration" data-ma-block="#l-register"><i class="notika-icon notika-plus-symbol"></i> <span th:text="#{button.register}"></span></a>
             <a href="forgotPassword" data-ma-block="#l-forget-password"><i>?</i> <span th:text="#{button.forgotPassword}"></span></a>
         </div>
-
     </div>
+
 
 </div>
 <th:block th:insert="fragments/_scripts"/>
