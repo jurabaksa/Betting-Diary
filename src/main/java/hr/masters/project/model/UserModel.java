@@ -29,6 +29,7 @@ public class UserModel
 
     public UserModel(final UserModel user)
     {
+        this.username = user.getUsername();
         this.name = user.getName();
         this.surname = user.getSurname();
         this.email = user.getEmail();

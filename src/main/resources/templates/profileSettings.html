@@ -25,6 +25,86 @@
 </div>
 <th:block th:insert="fragments/_mainMenu"/>
 
+<div class="form-example-wrap mg-t-30" style="width:60%; text-align:center; margin-left: 20%">
+    <form action="#" method="POST" th:action="@{/profileSettings}" th:object="${ProfileSettingsForm}">
+        <div class="cmp-tb-hd cmp-int-hd">
+            <h2 th:text="#{button.profileSettings}"></h2>
+        </div>
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">First name:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{name}" th:placeholder="#{placeholder.enter.firstName}">
+                            <span class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-example-int form-horizental mg-t-15">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Second name:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{surname}" th:placeholder="#{placeholder.enter.lastName}">
+                            <span class="error-message" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-example-int form-horizental mg-t-15">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Email:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{email}" th:placeholder="#{placeholder.enter.email}">
+                            <span class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-example-int form-horizental mg-t-15">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Password:</label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="password" class="form-control input-sm" th:field="*{password}" th:placeholder="#{placeholder.enter.password}">
+                            <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-example-int mg-t-15">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                    <button class="btn btn-success notika-btn-success waves-effect" type="submit" th:text="#{button.submit}"></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 <th:block th:insert="fragments/_scripts"/>
 
 </body>

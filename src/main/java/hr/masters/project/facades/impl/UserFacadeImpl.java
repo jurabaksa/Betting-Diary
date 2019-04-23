@@ -2,6 +2,7 @@ package hr.masters.project.facades.impl;
 
 import hr.masters.project.facades.UserFacade;
 import hr.masters.project.forms.NewUserForm;
+import hr.masters.project.forms.ProfileSettingsForm;
 import hr.masters.project.model.UserModel;
 import hr.masters.project.repository.RoleRepository;
 import hr.masters.project.service.EmailService;
@@ -9,6 +10,7 @@ import hr.masters.project.service.UserService;
 import hr.masters.project.util.Constants;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -46,6 +48,42 @@ public class UserFacadeImpl implements UserFacade
         user.setPassword(bCryptPasswordEncoder.encode(generatedPassword));
         emailService.sendNewPassword(user.getEmail(), generatedPassword);
         userService.saveUser(user);
+    }
+
+    @Override
+    public UserModel getLoggedUser()
+    {
+        final String username = SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+
+        return (userService.findByUsername(username)).get();
+    }
+
+    @Override
+    public ProfileSettingsForm populateProfileSettingsForm()
+    {
+        final UserModel loggedUser = getLoggedUser();
+        final ProfileSettingsForm profileSettingsForm = new ProfileSettingsForm();
+        profileSettingsForm.setEmail(loggedUser.getEmail());
+        profileSettingsForm.setName(loggedUser.getName());
+        profileSettingsForm.setSurname(loggedUser.getSurname());
+        return profileSettingsForm;
+    }
+
+    @Override
+    public void changeProfileSettings(final ProfileSettingsForm newProfileSettings)
+    {
+        final UserModel loggedUser = getLoggedUser();
+        loggedUser.setEmail(newProfileSettings.getEmail());
+        loggedUser.setName(newProfileSettings.getName());
+        loggedUser.setSurname(newProfileSettings.getSurname());
+        if (!loggedUser.getPassword().equals(bCryptPasswordEncoder.encode(newProfileSettings.getPassword())))
+        {
+            loggedUser.setPassword(bCryptPasswordEncoder.encode(newProfileSettings.getPassword()));
+        }
+        userService.updateUser(loggedUser);
     }
 
     private String generateRandomPassword()
