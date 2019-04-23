@@ -56,7 +56,7 @@ public class ForgotPasswordController
         }
         else
         {
-            //userFacade.sendNewPasswordToEmail();
+            userFacade.changePassword(newUserForm);
             modelAndView.setViewName(Constants.Pages.NEW_PASSWORD_SUCCESS);
         }
         return modelAndView;

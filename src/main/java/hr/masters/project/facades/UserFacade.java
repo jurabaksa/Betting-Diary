@@ -4,5 +4,7 @@ import hr.masters.project.forms.NewUserForm;
 
 public interface UserFacade
 {
-    public void createUser(NewUserForm newUserForm);
+    void createUser(NewUserForm newUserForm);
+
+    void changePassword(NewUserForm newUserForm);
 }

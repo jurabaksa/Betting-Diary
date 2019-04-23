@@ -63,4 +63,13 @@ public interface Constants
     {
         String NOUSERNAME = "Username not found!";
     }
+
+    interface Email
+    {
+        String EMAIL_NAME = "betting_diary@bd.com";
+
+        String NEW_PASSWORD_SUBJECT = "New password";
+
+        String NEW_PASSWORD_HEADING = "Hello, per your request we provided you with new password. Your new password is: ";
+    }
 }
