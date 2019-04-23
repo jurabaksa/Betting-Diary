@@ -26,6 +26,18 @@ public interface Constants
 
         String BOOTSTRAP = "/bootstrap";
 
+        String CSS = "/css/**";
+
+        String FONTS = "/fonts/**";
+
+        String IMAGES = "/images/**";
+
+        String IMG = "/img/**";
+
+        String JS = "/js/**";
+
+        String STYLE = "/style.css";
+
     }
 
     interface Pages
