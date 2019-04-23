@@ -18,7 +18,9 @@ public interface Constants
 
         String REGISTRATION_SUCCESS = "/registrationSuccess";
 
-        String FORGOT = "/forgotPassword";
+        String FORGOT_PASSWORD = "/forgotPassword";
+
+        String NEW_PASSWORD_SUCCESS = "/newPasswordSuccess";
 
         String ERROR = "/error";
 
@@ -35,6 +37,8 @@ public interface Constants
         String LOGIN = "login";
 
         String FORGOT_PASSWORD = "forgotPassword";
+
+        String NEW_PASSWORD_SUCCESS = "newPasswordSuccess";
 
         String HOME_USER = "homeUser";
 
