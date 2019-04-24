@@ -28,6 +28,8 @@ public interface Constants
 
         String TICKET_DETAILS = "/ticketDetails";
 
+        String ADD_TICKET_DETAILS = "/addTicketDetails";
+
         String VISUAL_STATS = "/visualStats";
 
         String WINNINGS_HISTORY = "/winningsHistory";

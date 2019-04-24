@@ -4,8 +4,6 @@ import hr.masters.project.enums.OutcomeEnum;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "tickets", schema = "betting_diary_db")
@@ -24,9 +22,6 @@ public class TicketModel
     @ManyToOne
     @JoinColumn(name = "user", referencedColumnName = "username")
     private UserModel user;
-
-    @ManyToMany(mappedBy = "tickets")
-    private final Set<MatchModel> matches = new HashSet<>();
 
     public TicketModel()
     {
@@ -70,11 +65,6 @@ public class TicketModel
     public void setUser(final UserModel user)
     {
         this.user = user;
-    }
-
-    public Set<MatchModel> getMatches()
-    {
-        return matches;
     }
 
     public String getTicket()

@@ -3,9 +3,7 @@ package hr.masters.project.model;
 import hr.masters.project.enums.OutcomeEnum;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Date;
 
 import static hr.masters.project.enums.OutcomeEnum.UPCOMING;
 
@@ -19,33 +17,20 @@ public class MatchModel
 
     private OutcomeEnum outcome;
     private String prediction;
+    private double coefficient;
     private Date time;
     private String homeTeam;
     private String guestTeam;
     private String league;
     private String sport;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "Match_Ticket",
-            joinColumns = { @JoinColumn(name = "match_id") },
-            inverseJoinColumns = { @JoinColumn(name = "ticket_id") }
-    )
-    final Set<TicketModel> tickets = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "ticket", referencedColumnName = "ticket")
+    private TicketModel ticket;
 
     public MatchModel()
     {
         outcome = UPCOMING;
-    }
-
-    public Long getId()
-    {
-        return match_id;
-    }
-
-    public void setId(final Long match_id)
-    {
-        this.match_id = match_id;
     }
 
     public OutcomeEnum getOutcome()
@@ -76,11 +61,6 @@ public class MatchModel
     public void setTime(final Date time)
     {
         this.time = time;
-    }
-
-    public Set<TicketModel> getTickets()
-    {
-        return tickets;
     }
 
     public String getHomeTeam()
@@ -121,5 +101,35 @@ public class MatchModel
     public void setSport(final String sport)
     {
         this.sport = sport;
+    }
+
+    public Long getMatch_id()
+    {
+        return match_id;
+    }
+
+    public void setMatch_id(final Long match_id)
+    {
+        this.match_id = match_id;
+    }
+
+    public double getCoefficient()
+    {
+        return coefficient;
+    }
+
+    public void setCoefficient(final double coefficient)
+    {
+        this.coefficient = coefficient;
+    }
+
+    public TicketModel getTicket()
+    {
+        return ticket;
+    }
+
+    public void setTicket(final TicketModel ticket)
+    {
+        this.ticket = ticket;
     }
 }
