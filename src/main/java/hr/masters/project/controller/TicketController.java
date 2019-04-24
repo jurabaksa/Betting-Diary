@@ -12,6 +12,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -62,16 +63,37 @@ public class TicketController
         if (bindingResult.hasErrors())
         {
             modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, newTicketForm);
+            modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
             modelAndView.setViewName(Constants.Pages.ADD_TICKET);
 
         }
         else
         {
             ticketFacade.createNewTicket(newTicketForm);
+            modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
             modelAndView.setViewName(Constants.Pages.HOME);
         }
         return modelAndView;
+    }
 
+    @RequestMapping(value = Constants.Paths.TICKET_DETAILS, method = RequestMethod.GET)
+    public ModelAndView getTicketDetailsRedirect()
+    {
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
+        modelAndView.setViewName(Constants.Pages.HOME);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = Constants.Paths.TICKET_DETAILS, method = RequestMethod.POST)
+    public ModelAndView getTicketDetails(
+            @RequestParam
+            final String ticket)
+    {
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
+        modelAndView.setViewName(Constants.Pages.TICKET_DETAILS);
+        return modelAndView;
     }
 
 }

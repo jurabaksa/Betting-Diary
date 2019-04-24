@@ -43,7 +43,6 @@
                                 <th th:text="#{ticket.stake}"></th>
                                 <th th:text="#{ticket.coefficient}"></th>
                                 <th th:text="#{ticket.winning}"></th>
-                                <th th:text="#{ticket.date}"></th>
                                 <th>...</th>
                             </tr>
                             </thead>
@@ -54,8 +53,12 @@
                                 <td th:text="${ticket.getStake()} + ' kn'"></td>
                                 <td th:text="${ticket.getCoefficient()}"></td>
                                 <td th:text="${ticket.getWinning()} + ' kn'"></td>
-                                <td th:text="${ticket.getTime()}"></td>
-                                <td th:text="#{ticket.details}"></td>
+                                <td>
+                                    <form action="#" method="POST" th:action="@{/ticketDetails}">
+                                        <input type="hidden" th:value="${ticket.getTicket()}" name="ticket"/>
+                                        <button style="display:inline-block; width: 80px; height: 32px; background-color: #00c292;" type="submit" th:text="#{ticket.details}"></button>
+                                    </form>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -68,7 +71,7 @@
 <!-- Data Table area End-->
 
 
-<th:block th:insert="fragments/_scripts"/>
+<th:block th:insert=" fragments/_scripts"/>
 
 </body>
 

@@ -34,11 +34,6 @@ public class TicketValidator implements Validator
             errors.rejectValue("ticket_id", "error.ticket.empty");
         }
 
-        if (newTicketForm.getTime() == null)
-        {
-            errors.rejectValue("time", "error.time.empty");
-        }
-
         if (newTicketForm.getStake() < 0)
         {
             errors.rejectValue("stake", "error.stake.faulty");

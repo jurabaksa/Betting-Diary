@@ -33,7 +33,6 @@ public class TicketFacadeImpl implements TicketFacade
     {
         final TicketModel newTicket = new TicketModel();
         newTicket.setTicket(newTicketForm.getTicket_id());
-        newTicket.setTime(newTicketForm.getTime());
         newTicket.setStake(newTicketForm.getStake());
         newTicket.setUser(userFacade.getLoggedUser());
         newTicket.setOutcome(OutcomeEnum.IN_PROGRESS);

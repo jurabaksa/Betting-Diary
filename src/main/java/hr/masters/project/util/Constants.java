@@ -26,6 +26,8 @@ public interface Constants
 
         String MY_TICKETS = "/myTickets";
 
+        String TICKET_DETAILS = "/ticketDetails";
+
         String VISUAL_STATS = "/visualStats";
 
         String WINNINGS_HISTORY = "/winningsHistory";
@@ -67,6 +69,8 @@ public interface Constants
         String ADD_TICKET = "addTicket";
 
         String MY_TICKETS = "myTickets";
+
+        String TICKET_DETAILS = "ticketDetails";
 
         String VISUAL_STATS = "visualStats";
 
