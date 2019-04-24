@@ -44,17 +44,17 @@
                                 <th th:text="#{ticket.coefficient}"></th>
                                 <th th:text="#{ticket.winning}"></th>
                                 <th th:text="#{ticket.date}"></th>
-                                <th th:text="#{ticket.details}"></th>
+                                <th>...</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="ticket: ${tickets}">
-                                <td th:text="${ticket.getTicketId()}"></td>
+                                <td th:text="${ticket.getTicket()}"></td>
                                 <td th:text="${ticket.getOutcome()}"></td>
-                                <td th:text="${ticket.getStake()}"></td>
+                                <td th:text="${ticket.getStake()} + ' kn'"></td>
                                 <td th:text="${ticket.getCoefficient()}"></td>
-                                <td th:text="${ticket.getWinning()}"></td>
-                                <td th:text="${ticket.getDate()}"></td>
+                                <td th:text="${ticket.getWinning()} + ' kn'"></td>
+                                <td th:text="${ticket.getTime()}"></td>
                                 <td th:text="#{ticket.details}"></td>
                             </tr>
                             </tbody>

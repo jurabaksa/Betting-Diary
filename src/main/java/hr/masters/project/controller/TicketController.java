@@ -17,7 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TicketController
 {
-    private static final String TICKET_FORM_ATTRIBUTE = "tickets";
+    private static final String TICKETS_ATTRIBUTE = "tickets";
+    private static final String NEW_TICKET_ATTRIBUTE = "ticket";
     private static final String USER_ATTRIBUTE = "user";
 
     @Autowired
@@ -33,15 +34,25 @@ public class TicketController
     public ModelAndView showMyTickets()
     {
         final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.getModelMap().addAttribute(TICKETS_ATTRIBUTE, ticketFacade.retrieveUserTickets());
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
         modelAndView.setViewName(Constants.Pages.MY_TICKETS);
-        modelAndView.getModelMap().addAttribute(TICKET_FORM_ATTRIBUTE, ticketFacade.retrieveUserTickets());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = Constants.Paths.ADD_TICKET, method = RequestMethod.GET)
+    public ModelAndView showAddTicketForm()
+    {
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(Constants.Pages.ADD_TICKET);
+        modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, new NewTicketForm());
         modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
         return modelAndView;
     }
 
     @RequestMapping(value = Constants.Paths.ADD_TICKET, method = RequestMethod.POST)
-    public ModelAndView addNewTicket(
-            @ModelAttribute(TICKET_FORM_ATTRIBUTE)
+    public ModelAndView addTicket(
+            @ModelAttribute(NEW_TICKET_ATTRIBUTE)
             final NewTicketForm newTicketForm,
             final BindingResult bindingResult)
     {
@@ -50,14 +61,17 @@ public class TicketController
 
         if (bindingResult.hasErrors())
         {
-            modelAndView.getModelMap().addAttribute(TICKET_FORM_ATTRIBUTE, newTicketForm);
+            modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, newTicketForm);
             modelAndView.setViewName(Constants.Pages.ADD_TICKET);
+
         }
         else
         {
-            modelAndView.setViewName(Constants.Pages.MY_TICKETS);
+            ticketFacade.createNewTicket(newTicketForm);
+            modelAndView.setViewName(Constants.Pages.HOME);
         }
-
         return modelAndView;
+
     }
+
 }

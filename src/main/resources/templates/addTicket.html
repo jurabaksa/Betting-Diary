@@ -24,7 +24,70 @@
     </div>
 </div>
 <th:block th:insert="fragments/_mainMenu"/>
+<!-- Start ticket form -->
+<div class="form-example-wrap mg-t-30" style="width:60%; text-align:center; margin-left: 20%">
+    <form action="#" method="POST" th:action="@{/addTicket}" th:object="${ticket}">
+        <div class="cmp-tb-hd cmp-int-hd">
+            <h2 th:text="#{ticket.add}"></h2>
+        </div>
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm" th:text="#{ticket.id}"></label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{ticket_id}" th:placeholder="#{placeholder.enter.ticketId}">
+                            <span class="error-message" th:if="${#fields.hasErrors('ticket_id')}" th:errors="*{ticket_id}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm" th:text="#{ticket.stake}"></label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{stake}" th:placeholder="#{placeholder.enter.stake}">
+                            <span class="error-message" th:if="${#fields.hasErrors('stake')}" th:errors="*{stake}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-example-int form-horizental mg-t-15">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm" th:text="#{ticket.date}"></label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="date" class="form-control input-sm" th:field="*{time}">
+                            <span class="error-message" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="form-example-int mg-t-15">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                    <button class="btn btn-success notika-btn-success waves-effect" type="submit" th:text="#{button.submit}"></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- End ticket form -->
 <th:block th:insert="fragments/_scripts"/>
 
 </body>

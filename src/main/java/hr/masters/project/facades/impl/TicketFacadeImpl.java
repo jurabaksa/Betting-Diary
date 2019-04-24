@@ -1,7 +1,9 @@
 package hr.masters.project.facades.impl;
 
+import hr.masters.project.enums.OutcomeEnum;
 import hr.masters.project.facades.TicketFacade;
 import hr.masters.project.facades.UserFacade;
+import hr.masters.project.forms.NewTicketForm;
 import hr.masters.project.model.TicketModel;
 import hr.masters.project.model.UserModel;
 import hr.masters.project.service.TicketService;
@@ -24,5 +26,19 @@ public class TicketFacadeImpl implements TicketFacade
     {
         final UserModel user = userFacade.getLoggedUser();
         return ticketService.getTicketsByUser(user);
+    }
+
+    @Override
+    public void createNewTicket(final NewTicketForm newTicketForm)
+    {
+        final TicketModel newTicket = new TicketModel();
+        newTicket.setTicket(newTicketForm.getTicket_id());
+        newTicket.setTime(newTicketForm.getTime());
+        newTicket.setStake(newTicketForm.getStake());
+        newTicket.setUser(userFacade.getLoggedUser());
+        newTicket.setOutcome(OutcomeEnum.IN_PROGRESS);
+        newTicket.setCoefficient(1d);
+        newTicket.setWinning(newTicket.getCoefficient() * newTicket.getStake() * 0.9);
+        ticketService.createTicket(newTicket);
     }
 }

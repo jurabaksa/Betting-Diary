@@ -22,9 +22,9 @@ public interface Constants
 
         String NEW_PASSWORD_SUCCESS = "/newPasswordSuccess";
 
-        String MY_TICKETS = "/myTickets";
-
         String ADD_TICKET = "/addTicket";
+
+        String MY_TICKETS = "/myTickets";
 
         String VISUAL_STATS = "/visualStats";
 
@@ -64,9 +64,9 @@ public interface Constants
 
         String NEW_PASSWORD_SUCCESS = "newPasswordSuccess";
 
-        String MY_TICKETS = "myTickets";
-
         String ADD_TICKET = "addTicket";
+
+        String MY_TICKETS = "myTickets";
 
         String VISUAL_STATS = "visualStats";
 

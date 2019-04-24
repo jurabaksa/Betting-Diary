@@ -3,7 +3,7 @@ package hr.masters.project.model;
 import hr.masters.project.enums.OutcomeEnum;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,12 +12,13 @@ import java.util.Set;
 public class TicketModel
 {
     @Id
-    private String ticket_id;
+    private String ticket;
 
     private double stake;
     private double winning;
     private OutcomeEnum outcome;
     private double coefficient;
+
     private Date time;
 
     @ManyToOne
@@ -76,14 +77,14 @@ public class TicketModel
         return matches;
     }
 
-    public String getTicket_id()
+    public String getTicket()
     {
-        return ticket_id;
+        return ticket;
     }
 
-    public void setTicket_id(final String ticket_id)
+    public void setTicket(final String ticket)
     {
-        this.ticket_id = ticket_id;
+        this.ticket = ticket;
     }
 
     public double getCoefficient()

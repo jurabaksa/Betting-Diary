@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TicketServiceImpl implements TicketService
@@ -19,5 +20,17 @@ public class TicketServiceImpl implements TicketService
     public List<TicketModel> getTicketsByUser(final UserModel user)
     {
         return ticketRepository.findByUser(user);
+    }
+
+    @Override
+    public void createTicket(final TicketModel newTicket)
+    {
+        ticketRepository.save(newTicket);
+    }
+
+    @Override
+    public Optional<TicketModel> findTicketByTickedId(final String tickedId)
+    {
+        return ticketRepository.findByTicket(tickedId);
     }
 }

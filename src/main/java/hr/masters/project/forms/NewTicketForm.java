@@ -1,49 +1,40 @@
 package hr.masters.project.forms;
 
+import java.sql.Date;
+
 public class NewTicketForm
 {
-    String outcome;
-    String stake;
-    String winning;
-    String user;
+    String ticket_id;
+    Date time;
+    double stake;
 
-    public String getOutcome()
+    public String getTicket_id()
     {
-        return outcome;
+        return ticket_id;
     }
 
-    public void setOutcome(final String outcome)
+    public void setTicket_id(final String ticket_id)
     {
-        this.outcome = outcome;
+        this.ticket_id = ticket_id;
     }
 
-    public String getStake()
+    public Date getTime()
+    {
+        return time;
+    }
+
+    public void setTime(final Date time)
+    {
+        this.time = time;
+    }
+
+    public double getStake()
     {
         return stake;
     }
 
-    public void setStake(final String stake)
+    public void setStake(final double stake)
     {
         this.stake = stake;
-    }
-
-    public String getWinning()
-    {
-        return winning;
-    }
-
-    public void setWinning(final String winning)
-    {
-        this.winning = winning;
-    }
-
-    public String getUser()
-    {
-        return user;
-    }
-
-    public void setUser(final String user)
-    {
-        this.user = user;
     }
 }
