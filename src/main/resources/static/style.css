@@ -3658,13 +3658,13 @@ textarea.auto-size {
     width:100%;
 }
 .nk-navigation a[data-ma-block="#l-register"]:hover{
-    width:95px;
+    width:120px;
 }
 .nk-navigation a[data-ma-block="#l-forget-password"]:hover{
-    width:147px;
+    width:170px;
 }
 .nk-navigation a[data-ma-block="#l-login"]:hover{
-    width:85px;
+    width:90px;
 }
 .lc-block-alt .nk-form{
     padding:70px 35px 60px;

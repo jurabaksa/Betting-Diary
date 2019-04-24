@@ -3,6 +3,7 @@ package hr.masters.project.model;
 import hr.masters.project.enums.OutcomeEnum;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,12 +12,13 @@ import java.util.Set;
 public class TicketModel
 {
     @Id
-    @GeneratedValue
-    private Long ticket_id;
+    private String ticket_id;
 
     private double stake;
     private double winning;
     private OutcomeEnum outcome;
+    private double coefficient;
+    private Date time;
 
     @ManyToOne
     @JoinColumn(name = "user", referencedColumnName = "username")
@@ -27,16 +29,6 @@ public class TicketModel
 
     public TicketModel()
     {
-    }
-
-    public Long getId()
-    {
-        return ticket_id;
-    }
-
-    public void setId(final Long ticket_id)
-    {
-        this.ticket_id = ticket_id;
     }
 
     public double getStake()
@@ -82,5 +74,35 @@ public class TicketModel
     public Set<MatchModel> getMatches()
     {
         return matches;
+    }
+
+    public String getTicket_id()
+    {
+        return ticket_id;
+    }
+
+    public void setTicket_id(final String ticket_id)
+    {
+        this.ticket_id = ticket_id;
+    }
+
+    public double getCoefficient()
+    {
+        return coefficient;
+    }
+
+    public void setCoefficient(final double coefficient)
+    {
+        this.coefficient = coefficient;
+    }
+
+    public Date getTime()
+    {
+        return time;
+    }
+
+    public void setTime(final Date time)
+    {
+        this.time = time;
     }
 }
