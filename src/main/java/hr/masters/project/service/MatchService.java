@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MatchService
 {
-    List<MatchModel> findMatchesByTicket(String ticket);
+    List<MatchModel> getMatchesByTicket(String ticket);
 }

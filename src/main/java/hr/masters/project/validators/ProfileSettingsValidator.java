@@ -31,8 +31,8 @@ public class ProfileSettingsValidator implements Validator
     {
         final ProfileSettingsForm profileSettingsForm = (ProfileSettingsForm) o;
 
-        if (!profileSettingsForm.getEmail().equals(userFacade.getLoggedUser().getEmail()) && this.userService
-                .findByEmail(profileSettingsForm.getEmail())
+        if (!profileSettingsForm.getEmail().equals(userFacade.retrieveLoggedUser().getEmail()) && this.userService
+                .getByEmail(profileSettingsForm.getEmail())
                 .isPresent())
         {
             errors.rejectValue("email", "error.email.exists");

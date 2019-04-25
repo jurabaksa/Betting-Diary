@@ -27,14 +27,15 @@ public class RegistrationController
     private UserFacade userFacade;
 
     @RequestMapping(value = Constants.Paths.REGISTER, method = RequestMethod.GET)
-    public ModelAndView showRegistrationForm()
+    public ModelAndView displayRegistrationForm()
     {
         final ModelAndView modelAndView = new ModelAndView();
-        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
+
+        if (checkIfAuthenticated(modelAndView))
         {
-            modelAndView.setViewName(Constants.Pages.HOME);
             return modelAndView;
         }
+
         modelAndView.setViewName(Constants.Pages.REGISTRATION);
         modelAndView.getModelMap().addAttribute(USER_FORM_ATTRIBUTE, new NewUserForm());
         return modelAndView;
@@ -64,15 +65,26 @@ public class RegistrationController
     }
 
     @RequestMapping(value = Constants.Paths.REGISTRATION_SUCCESS, method = RequestMethod.GET)
-    public ModelAndView showSuccessfulRegistration()
+    public ModelAndView displaySuccessfulRegistrationMessage()
     {
         final ModelAndView modelAndView = new ModelAndView();
+
+        if (checkIfAuthenticated(modelAndView))
+        {
+            return modelAndView;
+        }
+
+        modelAndView.setViewName(Constants.Pages.REGISTRATION_SUCCESS);
+        return modelAndView;
+    }
+
+    private boolean checkIfAuthenticated(final ModelAndView modelAndView)
+    {
         if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
         {
             modelAndView.setViewName(Constants.Pages.HOME);
-            return modelAndView;
+            return true;
         }
-        modelAndView.setViewName(Constants.Pages.REGISTRATION_SUCCESS);
-        return modelAndView;
+        return false;
     }
 }

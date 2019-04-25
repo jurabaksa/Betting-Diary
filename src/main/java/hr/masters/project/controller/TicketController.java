@@ -3,7 +3,6 @@ package hr.masters.project.controller;
 import hr.masters.project.facades.MatchFacade;
 import hr.masters.project.facades.TicketFacade;
 import hr.masters.project.facades.UserFacade;
-import hr.masters.project.forms.NewMatchForm;
 import hr.masters.project.forms.NewTicketForm;
 import hr.masters.project.util.Constants;
 import hr.masters.project.validators.TicketValidator;
@@ -43,7 +42,7 @@ public class TicketController
     {
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.getModelMap().addAttribute(TICKETS_ATTRIBUTE, ticketFacade.retrieveUserTickets());
-        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
         modelAndView.setViewName(Constants.Pages.MY_TICKETS);
         return modelAndView;
     }
@@ -54,7 +53,7 @@ public class TicketController
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(Constants.Pages.ADD_TICKET);
         modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, new NewTicketForm());
-        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
         return modelAndView;
     }
 
@@ -70,14 +69,14 @@ public class TicketController
         if (bindingResult.hasErrors())
         {
             modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, newTicketForm);
-            modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
+            modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
             modelAndView.setViewName(Constants.Pages.ADD_TICKET);
 
         }
         else
         {
             ticketFacade.createNewTicket(newTicketForm);
-            modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
+            modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
             modelAndView.setViewName(Constants.Pages.HOME);
         }
         return modelAndView;
@@ -87,7 +86,7 @@ public class TicketController
     public ModelAndView getTicketDetailsRedirect()
     {
         final ModelAndView modelAndView = new ModelAndView();
-        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
         modelAndView.setViewName(Constants.Pages.HOME);
         return modelAndView;
     }
@@ -98,32 +97,21 @@ public class TicketController
             final String ticket)
     {
         final ModelAndView modelAndView = new ModelAndView();
-        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
         modelAndView.getModelMap().addAttribute(MATCHES_ATTRIBUTE, matchFacade.retrieveTicketMatches(ticket));
 
-        final NewTicketForm ticketForm = new NewTicketForm();
-        ticketForm.setTicket_id(ticket);
+        final NewTicketForm currentTicket = getCurrentTicket(ticket);
 
-        modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, ticketForm);
+        modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, currentTicket);
         modelAndView.setViewName(Constants.Pages.TICKET_DETAILS);
         return modelAndView;
     }
 
-    @RequestMapping(value = Constants.Paths.ADD_TICKET_DETAILS, method = RequestMethod.POST)
-    public ModelAndView addTicketDetails(
-            @ModelAttribute(MATCHES_ATTRIBUTE)
-            final NewMatchForm newMatchForm,
-            final BindingResult bindingResult)
+    private NewTicketForm getCurrentTicket(final String ticket)
     {
-        final ModelAndView modelAndView = new ModelAndView();
-        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.getLoggedUser().getUsername());
-
         final NewTicketForm ticketForm = new NewTicketForm();
-        //ticketForm.setTicket_id(ticket);
-
-        modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, ticketForm);
-        modelAndView.setViewName(Constants.Pages.TICKET_DETAILS);
-        return modelAndView;
+        ticketForm.setTicket_id(ticket);
+        return ticketForm;
     }
 
 }

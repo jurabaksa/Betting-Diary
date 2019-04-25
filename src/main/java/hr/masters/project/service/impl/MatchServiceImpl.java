@@ -15,7 +15,7 @@ public class MatchServiceImpl implements MatchService
     private MatchRepository matchRepository;
 
     @Override
-    public List<MatchModel> findMatchesByTicket(final String ticket)
+    public List<MatchModel> getMatchesByTicket(final String ticket)
     {
         return matchRepository.findByTicket_Ticket(ticket);
     }

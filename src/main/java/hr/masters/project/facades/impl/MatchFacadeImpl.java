@@ -17,6 +17,6 @@ public class MatchFacadeImpl implements MatchFacade
     @Override
     public List<MatchModel> retrieveTicketMatches(final String ticket)
     {
-        return matchService.findMatchesByTicket(ticket);
+        return matchService.getMatchesByTicket(ticket);
     }
 }

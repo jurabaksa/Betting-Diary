@@ -14,11 +14,12 @@ public class LoginController
     public ModelAndView authenticateUser()
     {
         final ModelAndView modelAndView = new ModelAndView();
-        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
+
+        if (checkIfAuthenticated(modelAndView))
         {
-            modelAndView.setViewName(Constants.Pages.HOME);
             return modelAndView;
         }
+
         modelAndView.setViewName(Constants.Pages.LOGIN);
         return modelAndView;
     }
@@ -29,5 +30,15 @@ public class LoginController
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(Constants.Pages.LOGIN);
         return modelAndView;
+    }
+
+    private boolean checkIfAuthenticated(final ModelAndView modelAndView)
+    {
+        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
+        {
+            modelAndView.setViewName(Constants.Pages.HOME);
+            return true;
+        }
+        return false;
     }
 }

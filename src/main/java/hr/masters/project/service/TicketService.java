@@ -12,5 +12,5 @@ public interface TicketService
 
     void createTicket(final TicketModel newTicket);
 
-    Optional<TicketModel> findTicketByTickedId(final String tickedId);
+    Optional<TicketModel> getTicketByTickedId(final String tickedId);
 }

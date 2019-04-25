@@ -10,7 +10,7 @@ public interface UserFacade
 
     void changePassword(NewUserForm newUserForm);
 
-    UserModel getLoggedUser();
+    UserModel retrieveLoggedUser();
 
     ProfileSettingsForm populateProfileSettingsForm();
 

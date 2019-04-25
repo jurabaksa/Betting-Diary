@@ -29,7 +29,7 @@ public class ForgotPasswordValidator implements Validator
     {
         final NewUserForm newUserForm = (NewUserForm) o;
 
-        final Optional<UserModel> optionalUser = userService.findByEmail(newUserForm.getEmail());
+        final Optional<UserModel> optionalUser = userService.getByEmail(newUserForm.getEmail());
 
         if (!optionalUser.isPresent())
         {

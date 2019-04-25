@@ -27,7 +27,7 @@ public class RegistrationValidator implements Validator
     {
         final NewUserForm newUserForm = (NewUserForm) o;
 
-        if (this.userService.findByUsername(newUserForm.getUsername()).isPresent())
+        if (this.userService.getByUsername(newUserForm.getUsername()).isPresent())
         {
             errors.rejectValue("username", "error.username.exists");
         }
@@ -37,7 +37,7 @@ public class RegistrationValidator implements Validator
             errors.rejectValue("username", "error.username.length");
         }
 
-        if (this.userService.findByEmail(newUserForm.getEmail()).isPresent())
+        if (this.userService.getByEmail(newUserForm.getEmail()).isPresent())
         {
             errors.rejectValue("email", "error.email.exists");
         }

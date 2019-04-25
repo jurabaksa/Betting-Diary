@@ -29,7 +29,7 @@ public class TicketServiceImpl implements TicketService
     }
 
     @Override
-    public Optional<TicketModel> findTicketByTickedId(final String tickedId)
+    public Optional<TicketModel> getTicketByTickedId(final String tickedId)
     {
         return ticketRepository.findByTicket(tickedId);
     }

@@ -43,7 +43,7 @@ public class UserFacadeImpl implements UserFacade
     @Override
     public void changePassword(final NewUserForm newUserForm)
     {
-        final UserModel user = userService.findByEmail(newUserForm.getEmail()).get();
+        final UserModel user = userService.getByEmail(newUserForm.getEmail()).get();
         final String generatedPassword = generateRandomPassword();
         user.setPassword(bCryptPasswordEncoder.encode(generatedPassword));
         emailService.sendNewPassword(user.getEmail(), generatedPassword);
@@ -51,20 +51,20 @@ public class UserFacadeImpl implements UserFacade
     }
 
     @Override
-    public UserModel getLoggedUser()
+    public UserModel retrieveLoggedUser()
     {
         final String username = SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getName();
 
-        return (userService.findByUsername(username)).get();
+        return (userService.getByUsername(username)).get();
     }
 
     @Override
     public ProfileSettingsForm populateProfileSettingsForm()
     {
-        final UserModel loggedUser = getLoggedUser();
+        final UserModel loggedUser = retrieveLoggedUser();
         final ProfileSettingsForm profileSettingsForm = new ProfileSettingsForm();
         profileSettingsForm.setEmail(loggedUser.getEmail());
         profileSettingsForm.setName(loggedUser.getName());
@@ -75,11 +75,12 @@ public class UserFacadeImpl implements UserFacade
     @Override
     public void changeProfileSettings(final ProfileSettingsForm newProfileSettings)
     {
-        final UserModel loggedUser = getLoggedUser();
+        final UserModel loggedUser = retrieveLoggedUser();
         loggedUser.setEmail(newProfileSettings.getEmail());
         loggedUser.setName(newProfileSettings.getName());
         loggedUser.setSurname(newProfileSettings.getSurname());
-        if (!loggedUser.getPassword().equals(bCryptPasswordEncoder.encode(newProfileSettings.getPassword())))
+        if (!loggedUser.getPassword().equals(newProfileSettings.getPassword()) && !newProfileSettings
+                .getPassword().isEmpty())
         {
             loggedUser.setPassword(bCryptPasswordEncoder.encode(newProfileSettings.getPassword()));
         }

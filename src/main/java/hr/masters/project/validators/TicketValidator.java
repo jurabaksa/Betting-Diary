@@ -24,7 +24,7 @@ public class TicketValidator implements Validator
     {
         final NewTicketForm newTicketForm = (NewTicketForm) o;
 
-        if (this.ticketService.findTicketByTickedId(newTicketForm.getTicket_id()).isPresent())
+        if (this.ticketService.getTicketByTickedId(newTicketForm.getTicket_id()).isPresent())
         {
             errors.rejectValue("ticket_id", "error.ticket.exists");
         }

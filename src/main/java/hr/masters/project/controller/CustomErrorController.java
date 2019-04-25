@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CustomErrorController implements ErrorController
 {
     @RequestMapping(Constants.Paths.ERROR)
-    public ModelAndView displayErrorPage()
+    public ModelAndView displayCustomErrorPage()
     {
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(Constants.Pages.ERROR);

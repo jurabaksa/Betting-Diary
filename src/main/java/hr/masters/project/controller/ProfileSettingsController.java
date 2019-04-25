@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ProfileSettingsController
 {
     private static final String PROFILE_SETTINGS_FORM = "ProfileSettingsForm";
+    private static final String USER_ATTRIBUTE = "user";
 
     @Autowired
     private UserFacade userFacade;
@@ -25,12 +26,13 @@ public class ProfileSettingsController
     private ProfileSettingsValidator profileSettingsValidator;
 
     @RequestMapping(value = Constants.Paths.PROFILE_SETTINGS, method = RequestMethod.GET)
-    public ModelAndView showProfileSettings()
+    public ModelAndView displayProfileSettings()
     {
         final ModelAndView modelAndView = new ModelAndView();
         final ProfileSettingsForm profileSettingsForm = userFacade.populateProfileSettingsForm();
         modelAndView.setViewName(Constants.Pages.PROFILE_SETTINGS);
         modelAndView.getModelMap().addAttribute(PROFILE_SETTINGS_FORM, profileSettingsForm);
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
         return modelAndView;
     }
 
@@ -54,7 +56,7 @@ public class ProfileSettingsController
             modelAndView.getModelMap().addAttribute(PROFILE_SETTINGS_FORM, profileSettingsForm);
             modelAndView.setViewName(Constants.Pages.PROFILE_SETTINGS);
         }
-
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
         return modelAndView;
     }
 }

@@ -24,7 +24,7 @@ public class TicketFacadeImpl implements TicketFacade
     @Override
     public List<TicketModel> retrieveUserTickets()
     {
-        final UserModel user = userFacade.getLoggedUser();
+        final UserModel user = userFacade.retrieveLoggedUser();
         return ticketService.getTicketsByUser(user);
     }
 
@@ -34,7 +34,7 @@ public class TicketFacadeImpl implements TicketFacade
         final TicketModel newTicket = new TicketModel();
         newTicket.setTicket(newTicketForm.getTicket_id());
         newTicket.setStake(newTicketForm.getStake());
-        newTicket.setUser(userFacade.getLoggedUser());
+        newTicket.setUser(userFacade.retrieveLoggedUser());
         newTicket.setOutcome(OutcomeEnum.IN_PROGRESS);
         newTicket.setCoefficient(1d);
         newTicket.setWinning(newTicket.getCoefficient() * newTicket.getStake() * 0.9);

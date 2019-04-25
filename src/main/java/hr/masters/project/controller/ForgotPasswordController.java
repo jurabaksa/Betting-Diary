@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ForgotPasswordController
 {
-    private static final String EMAIL_FORM_ATTRIBUTE = "EmailForm";
+    private static final String EMAIL_ATTRIBUTE = "EmailForm";
 
     @Autowired
     private ForgotPasswordValidator forgotPasswordValidator;
@@ -27,51 +27,64 @@ public class ForgotPasswordController
     private UserFacade userFacade;
 
     @RequestMapping(value = Constants.Paths.FORGOT_PASSWORD, method = RequestMethod.GET)
-    public ModelAndView showForgotPasswordForm()
+    public ModelAndView displayForgotPasswordForm()
     {
         final ModelAndView modelAndView = new ModelAndView();
-        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
+
+        if (checkIfAuthenticated(modelAndView))
         {
-            modelAndView.setViewName(Constants.Pages.HOME);
             return modelAndView;
         }
+
         modelAndView.setViewName(Constants.Pages.FORGOT_PASSWORD);
-        modelAndView.getModelMap().addAttribute(EMAIL_FORM_ATTRIBUTE, new NewUserForm());
+        modelAndView.getModelMap().addAttribute(EMAIL_ATTRIBUTE, new NewUserForm());
         return modelAndView;
     }
 
     @RequestMapping(value = Constants.Paths.FORGOT_PASSWORD, method = RequestMethod.POST)
-    public ModelAndView generateNewPassword(
-            @ModelAttribute(EMAIL_FORM_ATTRIBUTE)
-            final NewUserForm newUserForm,
+    public ModelAndView getNewPassword(
+            @ModelAttribute(EMAIL_ATTRIBUTE)
+            final NewUserForm emailForm,
             final BindingResult bindingResult)
     {
         final ModelAndView modelAndView = new ModelAndView();
-        ValidationUtils.invokeValidator(forgotPasswordValidator, newUserForm, bindingResult);
+        ValidationUtils.invokeValidator(forgotPasswordValidator, emailForm, bindingResult);
 
         if (bindingResult.hasErrors())
         {
-            modelAndView.getModelMap().addAttribute(EMAIL_FORM_ATTRIBUTE, newUserForm);
+            modelAndView.getModelMap().addAttribute(EMAIL_ATTRIBUTE, emailForm);
             modelAndView.setViewName(Constants.Pages.FORGOT_PASSWORD);
         }
         else
         {
-            userFacade.changePassword(newUserForm);
+            userFacade.changePassword(emailForm);
             modelAndView.setViewName(Constants.Pages.NEW_PASSWORD_SUCCESS);
         }
         return modelAndView;
     }
 
     @RequestMapping(value = Constants.Paths.NEW_PASSWORD_SUCCESS, method = RequestMethod.GET)
-    public ModelAndView showSuccessfulPasswordChange()
+    public ModelAndView displaySuccessfulPasswordChangeMessage()
     {
         final ModelAndView modelAndView = new ModelAndView();
-        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
+
+        if (checkIfAuthenticated(modelAndView))
         {
-            modelAndView.setViewName(Constants.Pages.HOME);
             return modelAndView;
         }
+
         modelAndView.setViewName(Constants.Pages.NEW_PASSWORD_SUCCESS);
         return modelAndView;
     }
+
+    private boolean checkIfAuthenticated(final ModelAndView modelAndView)
+    {
+        if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken))
+        {
+            modelAndView.setViewName(Constants.Pages.HOME);
+            return true;
+        }
+        return false;
+    }
+
 }

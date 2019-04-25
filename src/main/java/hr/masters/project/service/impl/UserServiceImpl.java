@@ -15,19 +15,19 @@ public class UserServiceImpl implements UserService
     private UserRepository userRepository;
 
     @Override
-    public UserModel findById(final long id)
+    public UserModel getById(final long id)
     {
         return userRepository.findById(id);
     }
 
     @Override
-    public Optional<UserModel> findByUsername(final String username)
+    public Optional<UserModel> getByUsername(final String username)
     {
         return userRepository.findByUsername(username);
     }
 
     @Override
-    public Optional<UserModel> findByEmail(final String email)
+    public Optional<UserModel> getByEmail(final String email)
     {
         return userRepository.findByEmail(email);
     }
