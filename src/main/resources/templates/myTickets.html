@@ -25,17 +25,17 @@
 </div>
 <th:block th:insert="fragments/_mainMenu"/>
 
-<div class="data-table-area">
+<div class="normal-table-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="data-table-list">
+                <div class="normal-table-list mg-t-30">
                     <div class="basic-tb-hd">
                         <h2 style="text-align:center;" th:text="#{ticket.title}"></h2>
                         <p style="text-align:center;" th:text="#{ticket.description}"></p>
                     </div>
-                    <div class="table-responsive">
-                        <table id="data-table-basic" class="table table-striped" th:object="${tickets}">
+                    <div class="bsc-tbl-st">
+                        <table class="table table-striped" th:object="${tickets}">
                             <thead>
                             <tr>
                                 <th th:text="#{ticket.id}"></th>

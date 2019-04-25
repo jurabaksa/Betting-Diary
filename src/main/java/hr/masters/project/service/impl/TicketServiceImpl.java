@@ -1,5 +1,7 @@
 package hr.masters.project.service.impl;
 
+import hr.masters.project.enums.OutcomeEnum;
+import hr.masters.project.model.MatchModel;
 import hr.masters.project.model.TicketModel;
 import hr.masters.project.model.UserModel;
 import hr.masters.project.repository.TicketRepository;
@@ -32,5 +34,26 @@ public class TicketServiceImpl implements TicketService
     public Optional<TicketModel> getTicketByTickedId(final String tickedId)
     {
         return ticketRepository.findByTicket(tickedId);
+    }
+
+    @Override
+    public void updateTicket(final TicketModel ticket, final MatchModel match)
+    {
+        ticket.setCoefficient(ticket.getCoefficient() * match.getCoefficient());
+        ticket.setWinning(ticket.getWinning() * match.getCoefficient());
+        if (isTicketFailed(match.getOutcome()))
+        {
+            ticket.setOutcome(OutcomeEnum.NEGATIVE);
+        }
+    }
+
+    private boolean isTicketFailed(final OutcomeEnum outcome)
+    {
+        if (outcome.equals(OutcomeEnum.NEGATIVE))
+        {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -10,4 +10,6 @@ public interface TicketFacade
     List<TicketModel> retrieveUserTickets();
 
     void createNewTicket(final NewTicketForm newTicket);
+
+    TicketModel retrieveTicket(String ticket);
 }

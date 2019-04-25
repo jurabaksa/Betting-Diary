@@ -40,4 +40,10 @@ public class TicketFacadeImpl implements TicketFacade
         newTicket.setWinning(newTicket.getCoefficient() * newTicket.getStake() * 0.9);
         ticketService.createTicket(newTicket);
     }
+
+    @Override
+    public TicketModel retrieveTicket(final String ticket)
+    {
+        return ticketService.getTicketByTickedId(ticket).get();
+    }
 }

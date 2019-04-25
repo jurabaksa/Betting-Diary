@@ -19,4 +19,10 @@ public class MatchServiceImpl implements MatchService
     {
         return matchRepository.findByTicket_Ticket(ticket);
     }
+
+    @Override
+    public MatchModel saveMatch(final MatchModel match)
+    {
+        return matchRepository.save(match);
+    }
 }

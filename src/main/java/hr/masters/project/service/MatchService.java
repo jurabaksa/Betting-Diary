@@ -7,4 +7,7 @@ import java.util.List;
 public interface MatchService
 {
     List<MatchModel> getMatchesByTicket(String ticket);
+
+    MatchModel saveMatch(MatchModel match);
+
 }

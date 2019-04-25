@@ -3,8 +3,6 @@ package hr.masters.project.forms;
 import hr.masters.project.model.TicketModel;
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 public class NewMatchForm
 {
@@ -16,7 +14,7 @@ public class NewMatchForm
     String prediction;
     String sport;
     Date time;
-    Set<TicketModel> tickets = new HashSet<>();
+    TicketModel ticket;
 
     public double getCoefficient()
     {
@@ -98,13 +96,13 @@ public class NewMatchForm
         this.time = time;
     }
 
-    public Set<TicketModel> getTickets()
+    public TicketModel getTicket()
     {
-        return tickets;
+        return ticket;
     }
 
-    public void setTickets(final Set<TicketModel> tickets)
+    public void setTicket(final TicketModel ticket)
     {
-        this.tickets = tickets;
+        this.ticket = ticket;
     }
 }

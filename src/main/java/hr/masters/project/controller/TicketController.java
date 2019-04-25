@@ -3,6 +3,7 @@ package hr.masters.project.controller;
 import hr.masters.project.facades.MatchFacade;
 import hr.masters.project.facades.TicketFacade;
 import hr.masters.project.facades.UserFacade;
+import hr.masters.project.forms.NewMatchForm;
 import hr.masters.project.forms.NewTicketForm;
 import hr.masters.project.util.Constants;
 import hr.masters.project.validators.TicketValidator;
@@ -83,7 +84,7 @@ public class TicketController
     }
 
     @RequestMapping(value = Constants.Paths.TICKET_DETAILS, method = RequestMethod.GET)
-    public ModelAndView getTicketDetailsRedirect()
+    public ModelAndView retrieveTicketDetailsRedirect()
     {
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
@@ -92,16 +93,46 @@ public class TicketController
     }
 
     @RequestMapping(value = Constants.Paths.TICKET_DETAILS, method = RequestMethod.POST)
-    public ModelAndView getTicketDetails(
+    public ModelAndView retrieveTicketDetails(
             @RequestParam
             final String ticket)
     {
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
-        modelAndView.getModelMap().addAttribute(MATCHES_ATTRIBUTE, matchFacade.retrieveTicketMatches(ticket));
+        modelAndView.getModelMap().addAttribute(NEW_MATCH_ATTRIBUTE, new NewMatchForm());
 
         final NewTicketForm currentTicket = getCurrentTicket(ticket);
+        modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, currentTicket);
+        modelAndView.getModelMap().addAttribute(MATCHES_ATTRIBUTE, matchFacade.retrieveTicketMatches(ticket));
 
+        modelAndView.setViewName(Constants.Pages.TICKET_DETAILS);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = Constants.Paths.ADD_TICKET_DETAILS, method = RequestMethod.GET)
+    public ModelAndView retrieveAddedMatchRedirect()
+    {
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
+        modelAndView.setViewName(Constants.Pages.HOME);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = Constants.Paths.ADD_TICKET_DETAILS, method = RequestMethod.POST)
+    public ModelAndView addNewMatchToTicket(
+            @RequestParam
+            final String ticket,
+            @ModelAttribute(NEW_MATCH_ATTRIBUTE)
+            final NewMatchForm newMatchForm, final BindingResult bindingResult)
+    {
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
+        modelAndView.getModelMap().addAttribute(NEW_MATCH_ATTRIBUTE, new NewMatchForm());
+        newMatchForm.setTicket(ticketFacade.retrieveTicket(ticket));
+        matchFacade.addMatchToTicket(newMatchForm);
+
+        modelAndView.getModelMap().addAttribute(MATCHES_ATTRIBUTE, matchFacade.retrieveTicketMatches(ticket));
+        final NewTicketForm currentTicket = getCurrentTicket(ticket);
         modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, currentTicket);
         modelAndView.setViewName(Constants.Pages.TICKET_DETAILS);
         return modelAndView;

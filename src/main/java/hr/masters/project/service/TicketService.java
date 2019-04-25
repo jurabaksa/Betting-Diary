@@ -1,5 +1,6 @@
 package hr.masters.project.service;
 
+import hr.masters.project.model.MatchModel;
 import hr.masters.project.model.TicketModel;
 import hr.masters.project.model.UserModel;
 
@@ -13,4 +14,6 @@ public interface TicketService
     void createTicket(final TicketModel newTicket);
 
     Optional<TicketModel> getTicketByTickedId(final String tickedId);
+
+    void updateTicket(final TicketModel ticket, final MatchModel match);
 }

@@ -39,8 +39,8 @@
                         <table class="table table-striped" th:object="${matches}">
                             <thead>
                             <tr>
-                                <th th:text="#{match.home_team}"></th>
-                                <th th:text="#{match.guest_team}"></th>
+                                <th th:text="#{match.homeTeam}"></th>
+                                <th th:text="#{match.guestTeam}"></th>
                                 <th th:text="#{match.prediction}"></th>
                                 <th th:text="#{match.coefficient}"></th>
                                 <th th:text="#{match.outcome}"></th>
@@ -68,160 +68,148 @@
         </div>
     </div>
 </div>
-<!-- Data Table area End-->
-<!--&lt;!&ndash; Start ticket form &ndash;&gt;-->
-<!--<div class="form-example-wrap mg-t-30" style="width:60%; text-align:center; margin-left: 20%">-->
-<!--<form action="#" method="POST" th:action="@{/addTicketDetails}" th:object="${match}">-->
-<!--<div class="cmp-tb-hd cmp-int-hd">-->
-<!--<h2 th:text="#{match.add}"></h2>-->
-<!--</div>-->
-<!--<div class="form-example-int form-horizental">-->
-<!--<div class="form-group">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">-->
-<!--<label class="hrzn-fm" th:text="#{ticket.id}"></label>-->
-<!--</div>-->
-<!--<div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">-->
-<!--<div class="nk-int-st">-->
-<!--<input type="hidden" class="form-control input-sm" th:field="*{ticket_id}" th:placeholder="#{placeholder.enter.ticketId}">-->
-<!--<span class="error-message" th:if="${#fields.hasErrors('ticket_id')}" th:errors="*{ticket_id}"></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-example-int form-horizental">-->
-<!--<div class="form-group">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">-->
-<!--<label class="hrzn-fm" th:text="#{ticket.id}"></label>-->
-<!--</div>-->
-<!--<div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">-->
-<!--<div class="nk-int-st">-->
-<!--<input type="text" class="form-control input-sm" th:field="*{ticket_id}" th:placeholder="#{placeholder.enter.ticketId}">-->
-<!--<span class="error-message" th:if="${#fields.hasErrors('ticket_id')}" th:errors="*{ticket_id}"></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-example-int form-horizental">-->
-<!--<div class="form-group">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">-->
-<!--<label class="hrzn-fm" th:text="#{ticket.stake}"></label>-->
-<!--</div>-->
-<!--<div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">-->
-<!--<div class="nk-int-st">-->
-<!--<input type="text" class="form-control input-sm" th:field="*{stake}" th:placeholder="#{placeholder.enter.stake}">-->
-<!--<span class="error-message" th:if="${#fields.hasErrors('stake')}" th:errors="*{stake}"></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-example-int form-horizental">-->
-<!--<div class="form-group">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">-->
-<!--<label class="hrzn-fm" th:text="#{ticket.stake}"></label>-->
-<!--</div>-->
-<!--<div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">-->
-<!--<div class="nk-int-st">-->
-<!--<input type="text" class="form-control input-sm" th:field="*{stake}" th:placeholder="#{placeholder.enter.stake}">-->
-<!--<span class="error-message" th:if="${#fields.hasErrors('stake')}" th:errors="*{stake}"></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-example-int form-horizental">-->
-<!--<div class="form-group">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">-->
-<!--<label class="hrzn-fm" th:text="#{ticket.stake}"></label>-->
-<!--</div>-->
-<!--<div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">-->
-<!--<div class="nk-int-st">-->
-<!--<input type="text" class="form-control input-sm" th:field="*{stake}" th:placeholder="#{placeholder.enter.stake}">-->
-<!--<span class="error-message" th:if="${#fields.hasErrors('stake')}" th:errors="*{stake}"></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-example-int form-horizental">-->
-<!--<div class="form-group">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">-->
-<!--<label class="hrzn-fm" th:text="#{ticket.stake}"></label>-->
-<!--</div>-->
-<!--<div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">-->
-<!--<div class="nk-int-st">-->
-<!--<input type="text" class="form-control input-sm" th:field="*{stake}" th:placeholder="#{placeholder.enter.stake}">-->
-<!--<span class="error-message" th:if="${#fields.hasErrors('stake')}" th:errors="*{stake}"></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-example-int form-horizental">-->
-<!--<div class="form-group">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">-->
-<!--<label class="hrzn-fm" th:text="#{ticket.stake}"></label>-->
-<!--</div>-->
-<!--<div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">-->
-<!--<div class="nk-int-st">-->
-<!--<input type="text" class="form-control input-sm" th:field="*{stake}" th:placeholder="#{placeholder.enter.stake}">-->
-<!--<span class="error-message" th:if="${#fields.hasErrors('stake')}" th:errors="*{stake}"></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-example-int form-horizental">-->
-<!--<div class="form-group">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">-->
-<!--<label class="hrzn-fm" th:text="#{ticket.stake}"></label>-->
-<!--</div>-->
-<!--<div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">-->
-<!--<div class="nk-int-st">-->
-<!--<input type="text" class="form-control input-sm" th:field="*{stake}" th:placeholder="#{placeholder.enter.stake}">-->
-<!--<span class="error-message" th:if="${#fields.hasErrors('stake')}" th:errors="*{stake}"></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-example-int form-horizental">-->
-<!--<div class="form-group">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">-->
-<!--<label class="hrzn-fm" th:text="#{ticket.stake}"></label>-->
-<!--</div>-->
-<!--<div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">-->
-<!--<div class="nk-int-st">-->
-<!--<input type="text" class="form-control input-sm" th:field="*{stake}" th:placeholder="#{placeholder.enter.stake}">-->
-<!--<span class="error-message" th:if="${#fields.hasErrors('stake')}" th:errors="*{stake}"></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-example-int mg-t-15">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">-->
-<!--</div>-->
-<!--<div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">-->
-<!--<button class="btn btn-success notika-btn-success waves-effect" type="submit" th:text="#{button.submit}"></button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</form>-->
-<!--</div>-->
-<!--&lt;!&ndash; End ticket form &ndash;&gt;-->
+<!-- Data Table area End -->
+<!-- Start match form -->
+<div class="form-example-wrap mg-t-30" style="width:40%; text-align:center; margin-left: 30%">
+    <form action="#" method="POST" th:action="@{/addTicketDetails}" th:object="${match}">
+        <div class="cmp-tb-hd cmp-int-hd">
+            <h2 th:text="#{match.add}"></h2>
+        </div>
+
+        <input type="hidden" class="form-control input-sm" th:value="${ticket.ticket_id}" name="ticket">
+
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm" th:text="#{match.homeTeam}"></label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{homeTeam}" th:placeholder="#{placeholder.enter.homeTeam}">
+                            <span class="error-message" th:if="${#fields.hasErrors('homeTeam')}" th:errors="*{homeTeam}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm" th:text="#{match.guestTeam}"></label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{guestTeam}" th:placeholder="#{placeholder.enter.guestTeam}">
+                            <span class="error-message" th:if="${#fields.hasErrors('guestTeam')}" th:errors="*{guestTeam}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm" th:text="#{match.prediction}"></label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{prediction}" th:placeholder="#{placeholder.enter.prediction}">
+                            <span class="error-message" th:if="${#fields.hasErrors('prediction')}" th:errors="*{prediction}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm" th:text="#{match.outcome}"></label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{outcome}" th:placeholder="#{placeholder.enter.outcome}">
+                            <span class="error-message" th:if="${#fields.hasErrors('outcome')}" th:errors="*{outcome}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm" th:text="#{match.coefficient}"></label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{coefficient}" th:placeholder="#{placeholder.enter.coefficient}">
+                            <span class="error-message" th:if="${#fields.hasErrors('coefficient')}" th:errors="*{coefficient}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm" th:text="#{match.sport}"></label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{sport}" th:placeholder="#{placeholder.enter.sport}">
+                            <span class="error-message" th:if="${#fields.hasErrors('sport')}" th:errors="*{sport}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm" th:text="#{match.league}"></label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="form-control input-sm" th:field="*{league}" th:placeholder="#{placeholder.enter.league}">
+                            <span class="error-message" th:if="${#fields.hasErrors('league')}" th:errors="*{league}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm" th:text="#{match.time}"></label>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="date" class="form-control input-sm" th:field="*{time}">
+                            <span class="error-message" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-example-int mg-t-15">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                    <button class="btn btn-success notika-btn-success waves-effect" type="submit" th:text="#{button.submit}"></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- End match form -->
 
 <th:block th:insert="fragments/_scripts"/>
 
