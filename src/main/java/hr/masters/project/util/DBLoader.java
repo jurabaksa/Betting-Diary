@@ -1,8 +1,5 @@
 package hr.masters.project.util;
 
-import javax.annotation.PostConstruct;
-import javax.transaction.Transactional;
-
 import hr.masters.project.model.RoleModel;
 import hr.masters.project.model.UserModel;
 import hr.masters.project.repository.RoleRepository;
@@ -12,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+
+import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 
 @Service
 public class DBLoader
@@ -42,24 +42,6 @@ public class DBLoader
                 "admin@mail.hr",
                 10000,
                 adminRole
-        );
-        createUser(
-                "Matija",
-                "Baksa",
-                "user1",
-                encodePassword("user1"),
-                "user1@mail.hr",
-                1000,
-                userRole
-        );
-        createUser(
-                "Diva",
-                "Baksa",
-                "user2",
-                encodePassword("user2"),
-                "user2@mail.hr",
-                2000,
-                userRole
         );
     }
 

@@ -11,12 +11,10 @@ public class TicketModel
 {
     @Id
     private String ticket;
-
     private double stake;
     private double winning;
     private OutcomeEnum outcome;
     private double coefficient;
-
     private Date time;
 
     @ManyToOne

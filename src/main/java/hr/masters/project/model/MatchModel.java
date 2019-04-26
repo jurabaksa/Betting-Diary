@@ -14,7 +14,6 @@ public class MatchModel
     @Id
     @GeneratedValue
     private Long match_id;
-
     private OutcomeEnum outcome;
     private String prediction;
     private double coefficient;

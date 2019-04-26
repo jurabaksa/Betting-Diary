@@ -1,7 +1,5 @@
 package hr.masters.project.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -19,7 +17,6 @@ public class UserModel
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
-    @JsonIgnore
     private RoleModel role;
 
     public UserModel()
