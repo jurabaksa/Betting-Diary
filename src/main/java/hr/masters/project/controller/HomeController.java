@@ -20,7 +20,7 @@ public class HomeController
     {
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(Constants.Pages.HOME);
-        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser());
         return modelAndView;
     }
 

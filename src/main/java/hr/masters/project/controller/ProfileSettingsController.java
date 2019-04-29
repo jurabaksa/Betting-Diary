@@ -32,7 +32,7 @@ public class ProfileSettingsController
         final ProfileSettingsForm profileSettingsForm = userFacade.populateProfileSettingsForm();
         modelAndView.setViewName(Constants.Pages.PROFILE_SETTINGS);
         modelAndView.getModelMap().addAttribute(PROFILE_SETTINGS_FORM, profileSettingsForm);
-        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser());
         return modelAndView;
     }
 
@@ -56,7 +56,7 @@ public class ProfileSettingsController
             modelAndView.getModelMap().addAttribute(PROFILE_SETTINGS_FORM, profileSettingsForm);
             modelAndView.setViewName(Constants.Pages.PROFILE_SETTINGS);
         }
-        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser().getUsername());
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser());
         return modelAndView;
     }
 }

@@ -6,14 +6,12 @@
             </a>
                 <div role="menu" class="dropdown-menu message-dd task-dd animated zoomIn">
                     <div class="hd-mg-tt">
-                        <h2>Tasks</h2>
+                        <h2 th:text="#{message.user.balance}"></h2>
                     </div>
-                    <div class="hd-message-info hd-task-info">
+                    <div th:object="${user}" class="hd-message-info hd-task-info">
                         <div class="skill">
-                            <div class="progress">
-                                <div class="lead-content">
-                                    <p>100kn</p>
-                                </div>
+                            <div class="lead-content">
+                                <p style="text-align: center" th:text="${user.balance} + ' kn'"></p>
                             </div>
                         </div>
                     </div>
@@ -39,7 +37,7 @@
                 </div>
             </li>
             <li th:object="${user}" style="margin-top: 20px; margin-left: 20px;" class="nav-item">
-                <p th:text="${user}"></p>
+                <p th:text="${user.username}"></p>
             </li>
             <li style="margin-top: 20px; margin-left: 20px;" class="nav-item">
                 <th:block th:insert="fragments/_languageChange"/>
