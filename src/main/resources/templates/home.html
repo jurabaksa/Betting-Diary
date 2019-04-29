@@ -24,8 +24,138 @@
     </div>
 </div>
 <th:block th:insert="fragments/_mainMenu"/>
-
-<th:block th:insert="fragments/_scripts"/>
+<!-- Start Contact Info area-->
+<div class="contact-info-area mg-t-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="widget-tabs-int sm-res-mg-t-30 tb-res-mg-t-30 tb-res-ds-n dk-res-ds">
+                    <div class="contact-hd tm-activity">
+                        <h2 th:text="#{home.football}"></h2>
+                        <p th:text="#{home.football.description}"></p>
+                    </div>
+                    <div class="widget-tabs-list">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home" th:text="#{home.football.championsleague}"></a></li>
+                            <li><a data-toggle="tab" href="#menu1" th:text="#{home.football.premiership}"></a></li>
+                            <li><a data-toggle="tab" href="#menu2" th:text="#{home.football.primera}"></a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                <div class="tab-wd-img">
+                                    <a href="https://www.oddsportal.com/soccer/europe/champions-league/"><img src="img/competitions/1.png" alt=""/></a>
+                                </div>
+                                <div class="tab-ctn">
+                                    <p th:text="#{home.footbal.championsleague.description}"></p>
+                                </div>
+                            </div>
+                            <div id="menu1" class="tab-pane fade">
+                                <div class="tab-wd-img">
+                                    <a href="https://www.oddsportal.com/soccer/england/premier-league/"> <img src="img/competitions/2.png" alt=""/> </a>
+                                </div>
+                                <div class="tab-ctn">
+                                    <p th:text="#{home.footbal.premiership.description}"></p>
+                                </div>
+                            </div>
+                            <div id="menu2" class="tab-pane fade">
+                                <div class="tab-wd-img">
+                                    <a href="https://www.oddsportal.com/soccer/spain/laliga/"><img src="img/competitions/3.png" alt=""/></a>
+                                </div>
+                                <div class="tab-ctn">
+                                    <p th:text="#{home.footbal.primera.description}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="widget-tabs-int sm-res-mg-t-30 tb-res-mg-t-30 tb-res-ds-n dk-res-ds">
+                    <div class="contact-hd tm-activity">
+                        <h2 th:text="#{home.basketball}"></h2>
+                        <p th:text="#{home.basketball.description}"></p>
+                    </div>
+                    <div class="widget-tabs-list">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home2" th:text="#{home.basketball.nba}"></a></li>
+                            <li><a data-toggle="tab" href="#menu5" th:text="#{home.basketball.euroleague}"></a></li>
+                            <li><a data-toggle="tab" href="#menu6" th:text="#{home.basketball.aba}"></a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="home2" class="tab-pane fade in active">
+                                <div class="tab-wd-img">
+                                    <a href="https://www.oddsportal.com/basketball/usa/nba/"><img src="img/competitions/4.png" alt=""/></a>
+                                </div>
+                                <div class="tab-ctn">
+                                    <p th:text="#{home.basketball.nba.description}"></p>
+                                </div>
+                            </div>
+                            <div id="menu5" class="tab-pane fade">
+                                <div class="tab-wd-img">
+                                    <a href="https://www.oddsportal.com/basketball/europe/euroleague"><img src="img/competitions/5.png" alt=""/></a>
+                                </div>
+                                <div class="tab-ctn">
+                                    <p th:text="#{home.basketball.euroleague.description}"></p>
+                                </div>
+                            </div>
+                            <div id="menu6" class="tab-pane fade">
+                                <div class="tab-wd-img">
+                                    <a href="https://www.aba-liga.com/"><img src="img/competitions/6.png" alt=""/></a>
+                                </div>
+                                <div class="tab-ctn">
+                                    <p th:text="#{home.basketball.aba.description}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="widget-tabs-int sm-res-mg-t-30 tb-res-mg-t-30 tb-res-ds-n dk-res-ds">
+                    <div class="contact-hd tm-activity">
+                        <h2 th:text="#{home.handball}"></h2>
+                        <p th:text="#{home.handball.description}"></p>
+                    </div>
+                    <div class="widget-tabs-list">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home1" th:text="#{home.handball.championsleague}"></a></li>
+                            <li><a data-toggle="tab" href="#menu3" th:text="#{home.handball.seha}"></a></li>
+                            <li><a data-toggle="tab" href="#menu4" th:text="#{home.handball.bundesliga}"></a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="home1" class="tab-pane fade in active">
+                                <div class="tab-wd-img">
+                                    <a href="https://www.oddsportal.com/handball/europe/champions-league/"><img src="img/competitions/7.png" alt=""/></a>
+                                </div>
+                                <div class="tab-ctn">
+                                    <p th:text="#{home.handball.championsleague.description}"></p>
+                                </div>
+                            </div>
+                            <div id="menu3" class="tab-pane fade">
+                                <div class="tab-wd-img">
+                                    <a href="http://www.seha-liga.com/"><img src="img/competitions/8.png" alt=""/></a>
+                                </div>
+                                <div class="tab-ctn">
+                                    <p th:text="#{home.handball.seha.description}"></p>
+                                </div>
+                            </div>
+                            <div id="menu4" class="tab-pane fade">
+                                <div class="tab-wd-img">
+                                    <a href="https://www.oddsportal.com/handball/germany/bundesliga/"><img src="img/competitions/9.png" alt=""/></a>
+                                    <div class="tab-ctn">
+                                        <p th:text="#{home.handball.bundesliga.description}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Contact Info area-->
+    <th:block th:insert="fragments/_scripts"/>
+    <th:block th:insert="fragments/_footer"/>
 
 </body>
 
