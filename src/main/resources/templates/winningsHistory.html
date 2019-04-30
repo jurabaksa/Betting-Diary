@@ -24,7 +24,47 @@
     </div>
 </div>
 <th:block th:insert="fragments/_mainMenu"/>
-
+<div class="normal-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="normal-table-list mg-t-30">
+                    <div class="basic-tb-hd">
+                        <h2 style="text-align:center;" th:text="#{ticketWinning.title}"></h2>
+                    </div>
+                    <div class="bsc-tbl-st">
+                        <table class="table table-striped" th:object="${tickets}">
+                            <thead>
+                            <tr>
+                                <th th:text="#{ticket.id}"></th>
+                                <th th:text="#{ticket.stake}"></th>
+                                <th th:text="#{ticket.coefficient}"></th>
+                                <th th:text="#{ticket.winning}"></th>
+                                <th>...</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="ticket: ${tickets}">
+                                <td th:text="${ticket.getTicket()}"></td>
+                                <td th:text="${ticket.getStake()} + ' kn'">></td>
+                                <td th:text="${ticket.getCoefficient()}"></td>
+                                <td th:text="${ticket.getWinning()} + ' kn'"></td>
+                                <td>
+                                    <form action="#" method="POST" th:action="@{/ticketDetails}">
+                                        <input type="hidden" th:value="${ticket.getTicket()}" name="ticket"/>
+                                        <button style="display:inline-block; width: 80px; height: 32px; background-color: #00c292;" type="submit" th:text="#{ticket.details}"></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Data Table area End-->
 <th:block th:insert="fragments/_scripts"/>
 
 </body>

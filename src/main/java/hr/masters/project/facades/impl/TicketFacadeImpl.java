@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class TicketFacadeImpl implements TicketFacade
@@ -30,6 +31,15 @@ public class TicketFacadeImpl implements TicketFacade
     {
         final UserModel user = userFacade.retrieveLoggedUser();
         return ticketService.getTicketsByUser(user);
+    }
+
+    @Override
+    public List<TicketModel> retrieveWinningTickets()
+    {
+        final UserModel user = userFacade.retrieveLoggedUser();
+        final List<TicketModel> allTickets = ticketService.getTicketsByUser(user);
+        return allTickets.stream().filter(ticket -> "POSITIVE".equals(ticket.getOutcome()))
+                         .collect(Collectors.toList());
     }
 
     @Override
