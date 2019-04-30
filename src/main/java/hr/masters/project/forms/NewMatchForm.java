@@ -15,6 +15,7 @@ public class NewMatchForm
     String sport;
     Date time;
     TicketModel ticket;
+    String ticketName;
 
     public double getCoefficient()
     {
@@ -104,5 +105,15 @@ public class NewMatchForm
     public void setTicket(final TicketModel ticket)
     {
         this.ticket = ticket;
+    }
+
+    public String getTicketName()
+    {
+        return ticketName;
+    }
+
+    public void setTicketName(final String ticketName)
+    {
+        this.ticketName = ticketName;
     }
 }

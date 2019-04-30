@@ -33,7 +33,9 @@
                 <div class="normal-table-list mg-t-30">
                     <div class="basic-tb-hd" th:object="${ticket}">
                         <h2 style="text-align:center;" th:text="${ticket.ticket_id}"></h2>
-                        <p style="text-align:center;" th:text="#{match.description}"></p>
+                        <p style="text-align:center;" th:text="#{ticket.coefficient} + ': ' + ${ticket.coefficient}"></p>
+                        <p style="text-align:center;" th:text="#{ticket.winning} + ': ' + ${ticket.winning} + ' kn'"></p>
+
                     </div>
                     <div class="bsc-tbl-st">
                         <table class="table table-striped" th:object="${matches}">
@@ -43,7 +45,6 @@
                                 <th th:text="#{match.guestTeam}"></th>
                                 <th th:text="#{match.prediction}"></th>
                                 <th th:text="#{match.coefficient}"></th>
-                                <th th:text="#{match.outcome}"></th>
                                 <th th:text="#{match.sport}"></th>
                                 <th th:text="#{match.league}"></th>
                                 <th th:text="#{match.time}"></th>
@@ -51,14 +52,25 @@
                             </thead>
                             <tbody>
                             <tr th:each="match: ${matches}">
-                                <td th:text="${match.getHomeTeam()}"></td>
-                                <td th:text="${match.getGuestTeam()}"></td>
-                                <td th:text="${match.getPrediction()}"></td>
-                                <td th:text="${match.getCoefficient()}"></td>
-                                <td th:text="${match.getOutcome()}"></td>
-                                <td th:text="${match.getSport()}"></td>
-                                <td th:text="${match.getLeague()}"></td>
-                                <td th:text="${match.getTime()}"></td>
+                                <div th:if="${match.getOutcome() eq 'NEGATIVE'}">
+                                    <td style="color: #F08080;" th:text="${match.getHomeTeam()}"></td>
+                                    <td style="color: #F08080;" th:text="${match.getGuestTeam()}">></td>
+                                    <td style="color: #F08080;" th:text="${match.getPrediction()}"></td>
+                                    <td style="color: #F08080;" th:text="${match.getCoefficient()}"></td>
+                                    <td style="color: #F08080;" th:text="${match.getSport()}"></td>
+                                    <td style="color: #F08080;" th:text="${match.getLeague()}"></td>
+                                    <td style="color: #F08080;" th:text="${match.getTime()}"></td>
+                                </div>
+
+                                <div th:unless="${match.getOutcome() eq 'NEGATIVE'}">
+                                    <td style="color: #00c292;" th:text="${match.getHomeTeam()}"></td>
+                                    <td style="color: #00c292;" th:text="${match.getGuestTeam()}">></td>
+                                    <td style="color: #00c292;" th:text="${match.getPrediction()}"></td>
+                                    <td style="color: #00c292;" th:text="${match.getCoefficient()}"></td>
+                                    <td style="color: #00c292;" th:text="${match.getSport()}"></td>
+                                    <td style="color: #00c292;" th:text="${match.getLeague()}"></td>
+                                    <td style="color: #00c292;" th:text="${match.getTime()}"></td>
+                                </div>
                             </tr>
                             </tbody>
                         </table>
@@ -76,7 +88,7 @@
             <h2 th:text="#{match.add}"></h2>
         </div>
 
-        <input type="hidden" class="form-control input-sm" th:value="${ticket.ticket_id}" name="ticket">
+        <input type="hidden" class="form-control input-sm" th:value="${ticket.ticket_id}" name="ticketName">
 
         <div class="form-example-int form-horizental">
             <div class="form-group">
@@ -137,9 +149,7 @@
                                         th:text="${result}">
                                 </option>
                             </select>
-
-                            <!--<input required type="text" class="form-control input-sm" th:field="*{outcome}" th:placeholder="#{placeholder.enter.outcome}">-->
-                            <<span class="error-message" th:if="${#fields.hasErrors('outcome')}" th:errors="*{outcome}"></span>
+                            <span class="error-message" th:if="${#fields.hasErrors('outcome')}" th:errors="*{outcome}"></span>
                         </div>
                     </div>
                 </div>

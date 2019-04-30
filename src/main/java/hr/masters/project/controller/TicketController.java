@@ -5,7 +5,9 @@ import hr.masters.project.facades.TicketFacade;
 import hr.masters.project.facades.UserFacade;
 import hr.masters.project.forms.NewMatchForm;
 import hr.masters.project.forms.NewTicketForm;
+import hr.masters.project.model.TicketModel;
 import hr.masters.project.util.Constants;
+import hr.masters.project.validators.MatchValidator;
 import hr.masters.project.validators.TicketValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,9 @@ public class TicketController
 
     @Autowired
     private UserFacade userFacade;
+
+    @Autowired
+    private MatchValidator matchValidator;
 
     @Autowired
     private MatchFacade matchFacade;
@@ -101,7 +106,7 @@ public class TicketController
         modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser());
         modelAndView.getModelMap().addAttribute(NEW_MATCH_ATTRIBUTE, new NewMatchForm());
 
-        final NewTicketForm currentTicket = getCurrentTicket(ticket);
+        final NewTicketForm currentTicket = getCurrentTicket(ticketFacade.retrieveTicket(ticket));
         modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, currentTicket);
         modelAndView.getModelMap().addAttribute(MATCHES_ATTRIBUTE, matchFacade.retrieveTicketMatches(ticket));
 
@@ -120,28 +125,43 @@ public class TicketController
 
     @RequestMapping(value = Constants.Paths.ADD_TICKET_DETAILS, method = RequestMethod.POST)
     public ModelAndView addNewMatchToTicket(
-            @RequestParam
-            final String ticket,
             @ModelAttribute(NEW_MATCH_ATTRIBUTE)
             final NewMatchForm newMatchForm, final BindingResult bindingResult)
     {
         final ModelAndView modelAndView = new ModelAndView();
-        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser());
-        modelAndView.getModelMap().addAttribute(NEW_MATCH_ATTRIBUTE, new NewMatchForm());
-        newMatchForm.setTicket(ticketFacade.retrieveTicket(ticket));
-        matchFacade.addMatchToTicket(newMatchForm);
 
-        modelAndView.getModelMap().addAttribute(MATCHES_ATTRIBUTE, matchFacade.retrieveTicketMatches(ticket));
-        final NewTicketForm currentTicket = getCurrentTicket(ticket);
+        ValidationUtils.invokeValidator(matchValidator, newMatchForm, bindingResult);
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser());
+        newMatchForm.setTicket(ticketFacade.retrieveTicket(newMatchForm.getTicketName()));
+
+        if (bindingResult.hasErrors())
+        {
+            modelAndView.getModelMap().addAttribute(NEW_MATCH_ATTRIBUTE, newMatchForm);
+        }
+
+        else
+        {
+            modelAndView.getModelMap().addAttribute(NEW_MATCH_ATTRIBUTE, new NewMatchForm());
+            matchFacade.addMatchToTicket(newMatchForm);
+        }
+
+        final NewTicketForm currentTicket = getCurrentTicket(newMatchForm.getTicket());
         modelAndView.getModelMap().addAttribute(NEW_TICKET_ATTRIBUTE, currentTicket);
+        modelAndView.getModelMap().addAttribute(
+                MATCHES_ATTRIBUTE,
+                matchFacade.retrieveTicketMatches(newMatchForm.getTicketName())
+        );
         modelAndView.setViewName(Constants.Pages.TICKET_DETAILS);
+
         return modelAndView;
     }
 
-    private NewTicketForm getCurrentTicket(final String ticket)
+    private NewTicketForm getCurrentTicket(final TicketModel ticket)
     {
         final NewTicketForm ticketForm = new NewTicketForm();
-        ticketForm.setTicket_id(ticket);
+        ticketForm.setTicket_id(ticket.getTicket());
+        ticketForm.setCoefficient(ticket.getCoefficient());
+        ticketForm.setWinning(ticket.getWinning());
         return ticketForm;
     }
 

@@ -1,7 +1,5 @@
 package hr.masters.project.model;
 
-import hr.masters.project.enums.OutcomeEnum;
-
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -13,7 +11,7 @@ public class TicketModel
     private String ticket;
     private double stake;
     private double winning;
-    private OutcomeEnum outcome;
+    private String outcome;
     private double coefficient;
     private Date time;
 
@@ -45,12 +43,12 @@ public class TicketModel
         this.winning = winning;
     }
 
-    public OutcomeEnum getOutcome()
+    public String getOutcome()
     {
         return outcome;
     }
 
-    public void setOutcome(final OutcomeEnum outcome)
+    public void setOutcome(final String outcome)
     {
         this.outcome = outcome;
     }

@@ -39,7 +39,6 @@
                             <thead>
                             <tr>
                                 <th th:text="#{ticket.id}"></th>
-                                <th th:text="#{ticket.outcome}"></th>
                                 <th th:text="#{ticket.stake}"></th>
                                 <th th:text="#{ticket.coefficient}"></th>
                                 <th th:text="#{ticket.winning}"></th>
@@ -48,17 +47,31 @@
                             </thead>
                             <tbody>
                             <tr th:each="ticket: ${tickets}">
-                                <td th:text="${ticket.getTicket()}"></td>
-                                <td th:text="${ticket.getOutcome()}"></td>
-                                <td th:text="${ticket.getStake()} + ' kn'"></td>
-                                <td th:text="${ticket.getCoefficient()}"></td>
-                                <td th:text="${ticket.getWinning()} + ' kn'"></td>
-                                <td>
-                                    <form action="#" method="POST" th:action="@{/ticketDetails}">
-                                        <input type="hidden" th:value="${ticket.getTicket()}" name="ticket"/>
-                                        <button style="display:inline-block; width: 80px; height: 32px; background-color: #00c292;" type="submit" th:text="#{ticket.details}"></button>
-                                    </form>
-                                </td>
+                                <div th:if="${ticket.getOutcome() eq 'NEGATIVE'}">
+                                    <td style="color: #F08080;" th:text="${ticket.getTicket()}"></td>
+                                    <td style="color: #F08080;" th:text="${ticket.getStake()} + ' kn'">></td>
+                                    <td style="color: #F08080;" th:text="${ticket.getCoefficient()}"></td>
+                                    <td style="color: #F08080;" th:text="${ticket.getWinning()} + ' kn'"></td>
+                                    <td>
+                                        <form action="#" method="POST" th:action="@{/ticketDetails}">
+                                            <input type="hidden" th:value="${ticket.getTicket()}" name="ticket"/>
+                                            <button style="display:inline-block; width: 80px; height: 32px; background-color: #00c292;" type="submit" th:text="#{ticket.details}"></button>
+                                        </form>
+                                    </td>
+                                </div>
+                                <div th:unless="${ticket.getOutcome() eq 'NEGATIVE'}">
+                                    <td style="color: #00c292;" th:text="${ticket.getTicket()}"></td>
+                                    <td style="color: #00c292;" th:text="${ticket.getStake()} + ' kn'">></td>
+                                    <td style="color: #00c292;" th:text="${ticket.getCoefficient()}"></td>
+                                    <td style="color: #00c292;" th:text="${ticket.getWinning()} + ' kn'"></td>
+                                    <td>
+                                        <form action="#" method="POST" th:action="@{/ticketDetails}">
+                                            <input type="hidden" th:value="${ticket.getTicket()}" name="ticket"/>
+                                            <button style="display:inline-block; width: 80px; height: 32px; background-color: #00c292;" type="submit" th:text="#{ticket.details}"></button>
+                                        </form>
+                                    </td>
+                                </div>
+
                             </tr>
                             </tbody>
                         </table>

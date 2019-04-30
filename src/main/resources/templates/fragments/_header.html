@@ -37,7 +37,7 @@
                 </div>
             </li>
             <li th:object="${user}" style="margin-top: 20px; margin-left: 20px;" class="nav-item">
-                <p th:text="${user.username}"></p>
+                <p th:text="#{message.welcome} + ' ' + ${user.username}"></p>
             </li>
             <li style="margin-top: 20px; margin-left: 20px;" class="nav-item">
                 <th:block th:insert="fragments/_languageChange"/>

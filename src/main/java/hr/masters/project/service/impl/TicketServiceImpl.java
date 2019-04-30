@@ -43,13 +43,15 @@ public class TicketServiceImpl implements TicketService
         ticket.setWinning(ticket.getWinning() * match.getCoefficient());
         if (isTicketFailed(match.getOutcome()))
         {
-            ticket.setOutcome(OutcomeEnum.NEGATIVE);
+            ticket.setOutcome(OutcomeEnum.NEGATIVE.name());
         }
+        ticketRepository.save(ticket);
+
     }
 
     private boolean isTicketFailed(final String outcome)
     {
-        if (outcome.equals(OutcomeEnum.NEGATIVE))
+        if (outcome.equals(OutcomeEnum.NEGATIVE.name()))
         {
             return true;
         }

@@ -3,6 +3,8 @@ package hr.masters.project.forms;
 public class NewTicketForm
 {
     String ticket_id;
+    Double coefficient;
+    Double winning;
     double stake;
 
     public String getTicket_id()
@@ -23,5 +25,25 @@ public class NewTicketForm
     public void setStake(final double stake)
     {
         this.stake = stake;
+    }
+
+    public Double getCoefficient()
+    {
+        return coefficient;
+    }
+
+    public void setCoefficient(final Double coefficient)
+    {
+        this.coefficient = coefficient;
+    }
+
+    public Double getWinning()
+    {
+        return winning;
+    }
+
+    public void setWinning(final Double winning)
+    {
+        this.winning = winning;
     }
 }

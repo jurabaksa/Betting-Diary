@@ -35,7 +35,7 @@ public class TicketFacadeImpl implements TicketFacade
         newTicket.setTicket(newTicketForm.getTicket_id());
         newTicket.setStake(newTicketForm.getStake());
         newTicket.setUser(userFacade.retrieveLoggedUser());
-        newTicket.setOutcome(OutcomeEnum.IN_PROGRESS);
+        newTicket.setOutcome(OutcomeEnum.POSITIVE.name());
         newTicket.setCoefficient(1d);
         newTicket.setWinning(newTicket.getCoefficient() * newTicket.getStake() * 0.9);
         ticketService.createTicket(newTicket);
