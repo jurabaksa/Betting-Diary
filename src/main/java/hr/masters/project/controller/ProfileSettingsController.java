@@ -20,10 +20,10 @@ public class ProfileSettingsController
     private static final String USER_ATTRIBUTE = "user";
 
     @Autowired
-    private UserFacade userFacade;
+    private ProfileSettingsValidator profileSettingsValidator;
 
     @Autowired
-    private ProfileSettingsValidator profileSettingsValidator;
+    private UserFacade userFacade;
 
     @RequestMapping(value = Constants.Paths.PROFILE_SETTINGS, method = RequestMethod.GET)
     public ModelAndView displayProfileSettings()

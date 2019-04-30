@@ -22,9 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TicketController
 {
+    private static final String USER_ATTRIBUTE = "user";
     private static final String TICKETS_ATTRIBUTE = "tickets";
     private static final String NEW_TICKET_ATTRIBUTE = "ticket";
-    private static final String USER_ATTRIBUTE = "user";
     private static final String MATCHES_ATTRIBUTE = "matches";
     private static final String NEW_MATCH_ATTRIBUTE = "match";
 
@@ -32,19 +32,19 @@ public class TicketController
     private TicketValidator ticketValidator;
 
     @Autowired
-    private TicketFacade ticketFacade;
+    private MatchValidator matchValidator;
 
     @Autowired
     private UserFacade userFacade;
 
     @Autowired
-    private MatchValidator matchValidator;
+    private TicketFacade ticketFacade;
 
     @Autowired
     private MatchFacade matchFacade;
 
     @RequestMapping(value = Constants.Paths.MY_TICKETS, method = RequestMethod.GET)
-    public ModelAndView showMyTickets()
+    public ModelAndView displayMyTickets()
     {
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.getModelMap().addAttribute(TICKETS_ATTRIBUTE, ticketFacade.retrieveUserTickets());
@@ -54,7 +54,7 @@ public class TicketController
     }
 
     @RequestMapping(value = Constants.Paths.ADD_TICKET, method = RequestMethod.GET)
-    public ModelAndView showAddTicketForm()
+    public ModelAndView displayAddTicketForm()
     {
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(Constants.Pages.ADD_TICKET);

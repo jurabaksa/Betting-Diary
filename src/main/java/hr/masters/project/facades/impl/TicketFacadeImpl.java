@@ -21,10 +21,10 @@ public class TicketFacadeImpl implements TicketFacade
     private UserFacade userFacade;
 
     @Autowired
-    private TicketService ticketService;
+    private UserService userService;
 
     @Autowired
-    private UserService userService;
+    private TicketService ticketService;
 
     @Override
     public List<TicketModel> retrieveUserTickets()
@@ -38,7 +38,7 @@ public class TicketFacadeImpl implements TicketFacade
     {
         final UserModel user = userFacade.retrieveLoggedUser();
         final List<TicketModel> allTickets = ticketService.getTicketsByUser(user);
-        return allTickets.stream().filter(ticket -> "POSITIVE".equals(ticket.getOutcome()))
+        return allTickets.stream().filter(ticket -> OutcomeEnum.POSITIVE.name().equals(ticket.getOutcome()))
                          .collect(Collectors.toList());
     }
 

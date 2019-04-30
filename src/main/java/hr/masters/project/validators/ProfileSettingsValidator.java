@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
 public class ProfileSettingsValidator implements Validator
 {
     @Autowired
-    private UserService userService;
+    private UserFacade userFacade;
 
     @Autowired
-    private UserFacade userFacade;
+    private UserService userService;
 
     @Override
     public boolean supports(final Class<?> aClass)

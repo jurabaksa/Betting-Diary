@@ -22,7 +22,7 @@ public class WinningsStatsController
     private TicketFacade ticketFacade;
 
     @RequestMapping(value = Constants.Paths.WINNINGS_HISTORY, method = RequestMethod.GET)
-    public ModelAndView showMyTickets()
+    public ModelAndView displayMyWinningTickets()
     {
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser());

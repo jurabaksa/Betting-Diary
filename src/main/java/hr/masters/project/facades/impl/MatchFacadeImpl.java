@@ -15,13 +15,13 @@ import java.util.List;
 public class MatchFacadeImpl implements MatchFacade
 {
     @Autowired
-    private MatchService matchService;
+    private UserFacade userFacade;
 
     @Autowired
     private TicketService ticketService;
 
     @Autowired
-    private UserFacade userFacade;
+    private MatchService matchService;
 
     @Override
     public List<MatchModel> retrieveTicketMatches(final String ticket)

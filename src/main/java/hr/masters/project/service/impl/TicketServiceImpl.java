@@ -18,13 +18,13 @@ import java.util.Optional;
 public class TicketServiceImpl implements TicketService
 {
     @Autowired
-    private TicketRepository ticketRepository;
-
-    @Autowired
     private UserFacade userFacade;
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TicketRepository ticketRepository;
 
     @Override
     public List<TicketModel> getTicketsByUser(final UserModel user)
