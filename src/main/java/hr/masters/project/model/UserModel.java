@@ -12,7 +12,7 @@ public class UserModel
     private String password;
     private String name;
     private String surname;
-    private int balance;
+    private double balance;
     private boolean enabled;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -86,12 +86,12 @@ public class UserModel
         this.password = password;
     }
 
-    public int getBalance()
+    public double getBalance()
     {
         return this.balance;
     }
 
-    public void setBalance(final int balance)
+    public void setBalance(final double balance)
     {
         this.balance = balance;
     }

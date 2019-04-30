@@ -7,6 +7,7 @@ import hr.masters.project.forms.NewTicketForm;
 import hr.masters.project.model.TicketModel;
 import hr.masters.project.model.UserModel;
 import hr.masters.project.service.TicketService;
+import hr.masters.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,9 @@ public class TicketFacadeImpl implements TicketFacade
 
     @Autowired
     private TicketService ticketService;
+
+    @Autowired
+    private UserService userService;
 
     @Override
     public List<TicketModel> retrieveUserTickets()
@@ -38,6 +42,9 @@ public class TicketFacadeImpl implements TicketFacade
         newTicket.setOutcome(OutcomeEnum.POSITIVE.name());
         newTicket.setCoefficient(1d);
         newTicket.setWinning(newTicket.getCoefficient() * newTicket.getStake() * 0.9);
+        final UserModel user = userFacade.retrieveLoggedUser();
+        user.setBalance(user.getBalance() - newTicket.getStake() + newTicket.getWinning());
+        userService.saveUser(user);
         ticketService.createTicket(newTicket);
     }
 

@@ -40,7 +40,7 @@ public class DBLoader
                 "admin",
                 encodePassword("admin"),
                 "admin@mail.hr",
-                10000,
+                0,
                 adminRole
         );
     }

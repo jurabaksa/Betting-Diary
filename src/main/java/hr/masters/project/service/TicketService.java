@@ -15,5 +15,5 @@ public interface TicketService
 
     Optional<TicketModel> getTicketByTickedId(final String tickedId);
 
-    void updateTicket(final TicketModel ticket, final MatchModel match);
+    TicketModel updateTicket(final TicketModel ticket, final MatchModel match);
 }

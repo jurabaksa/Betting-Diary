@@ -1,6 +1,7 @@
 package hr.masters.project.facades.impl;
 
 import hr.masters.project.facades.MatchFacade;
+import hr.masters.project.facades.UserFacade;
 import hr.masters.project.forms.NewMatchForm;
 import hr.masters.project.model.MatchModel;
 import hr.masters.project.service.MatchService;
@@ -18,6 +19,9 @@ public class MatchFacadeImpl implements MatchFacade
 
     @Autowired
     private TicketService ticketService;
+
+    @Autowired
+    private UserFacade userFacade;
 
     @Override
     public List<MatchModel> retrieveTicketMatches(final String ticket)
