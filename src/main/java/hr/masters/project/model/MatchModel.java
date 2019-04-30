@@ -1,11 +1,7 @@
 package hr.masters.project.model;
 
-import hr.masters.project.enums.OutcomeEnum;
-
 import javax.persistence.*;
 import java.sql.Date;
-
-import static hr.masters.project.enums.OutcomeEnum.UPCOMING;
 
 @Entity
 @Table(name = "matches", schema = "betting_diary_db")
@@ -14,7 +10,7 @@ public class MatchModel
     @Id
     @GeneratedValue
     private Long match_id;
-    private OutcomeEnum outcome;
+    private String outcome;
     private String prediction;
     private double coefficient;
     private Date time;
@@ -29,15 +25,14 @@ public class MatchModel
 
     public MatchModel()
     {
-        outcome = UPCOMING;
     }
 
-    public OutcomeEnum getOutcome()
+    public String getOutcome()
     {
         return outcome;
     }
 
-    public void setOutcome(final OutcomeEnum outcome)
+    public void setOutcome(final String outcome)
     {
         this.outcome = outcome;
     }

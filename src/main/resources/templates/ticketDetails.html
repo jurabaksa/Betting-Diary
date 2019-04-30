@@ -86,7 +86,7 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                         <div class="nk-int-st">
-                            <input type="text" class="form-control input-sm" th:field="*{homeTeam}" th:placeholder="#{placeholder.enter.homeTeam}">
+                            <input required type="text" class="form-control input-sm" th:field="*{homeTeam}" th:placeholder="#{placeholder.enter.homeTeam}">
                             <span class="error-message" th:if="${#fields.hasErrors('homeTeam')}" th:errors="*{homeTeam}"></span>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                         <div class="nk-int-st">
-                            <input type="text" class="form-control input-sm" th:field="*{guestTeam}" th:placeholder="#{placeholder.enter.guestTeam}">
+                            <input required type="text" class="form-control input-sm" th:field="*{guestTeam}" th:placeholder="#{placeholder.enter.guestTeam}">
                             <span class="error-message" th:if="${#fields.hasErrors('guestTeam')}" th:errors="*{guestTeam}"></span>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                         <div class="nk-int-st">
-                            <input type="text" class="form-control input-sm" th:field="*{prediction}" th:placeholder="#{placeholder.enter.prediction}">
+                            <input required type="text" class="form-control input-sm" th:field="*{prediction}" th:placeholder="#{placeholder.enter.prediction}">
                             <span class="error-message" th:if="${#fields.hasErrors('prediction')}" th:errors="*{prediction}"></span>
                         </div>
                     </div>
@@ -131,8 +131,15 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                         <div class="nk-int-st">
-                            <input type="text" class="form-control input-sm" th:field="*{outcome}" th:placeholder="#{placeholder.enter.outcome}">
-                            <span class="error-message" th:if="${#fields.hasErrors('outcome')}" th:errors="*{outcome}"></span>
+                            <select th:field="*{outcome}" class="form-control input-sm">
+                                <option th:each="result : ${T(hr.masters.project.enums.OutcomeEnum).values()}"
+                                        th:value="${result}"
+                                        th:text="${result}">
+                                </option>
+                            </select>
+
+                            <!--<input required type="text" class="form-control input-sm" th:field="*{outcome}" th:placeholder="#{placeholder.enter.outcome}">-->
+                            <<span class="error-message" th:if="${#fields.hasErrors('outcome')}" th:errors="*{outcome}"></span>
                         </div>
                     </div>
                 </div>
@@ -146,7 +153,7 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                         <div class="nk-int-st">
-                            <input type="text" class="form-control input-sm" th:field="*{coefficient}" th:placeholder="#{placeholder.enter.coefficient}">
+                            <input required type="text" class="form-control input-sm" th:field="*{coefficient}" th:placeholder="#{placeholder.enter.coefficient}">
                             <span class="error-message" th:if="${#fields.hasErrors('coefficient')}" th:errors="*{coefficient}"></span>
                         </div>
                     </div>
@@ -161,7 +168,7 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                         <div class="nk-int-st">
-                            <input type="text" class="form-control input-sm" th:field="*{sport}" th:placeholder="#{placeholder.enter.sport}">
+                            <input required type="text" class="form-control input-sm" th:field="*{sport}" th:placeholder="#{placeholder.enter.sport}">
                             <span class="error-message" th:if="${#fields.hasErrors('sport')}" th:errors="*{sport}"></span>
                         </div>
                     </div>
@@ -176,7 +183,7 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                         <div class="nk-int-st">
-                            <input type="text" class="form-control input-sm" th:field="*{league}" th:placeholder="#{placeholder.enter.league}">
+                            <input required type="text" class="form-control input-sm" th:field="*{league}" th:placeholder="#{placeholder.enter.league}">
                             <span class="error-message" th:if="${#fields.hasErrors('league')}" th:errors="*{league}"></span>
                         </div>
                     </div>
@@ -191,7 +198,7 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                         <div class="nk-int-st">
-                            <input type="date" class="form-control input-sm" th:field="*{time}">
+                            <input required type="date" class="form-control input-sm" th:field="*{time}">
                             <span class="error-message" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></span>
                         </div>
                     </div>

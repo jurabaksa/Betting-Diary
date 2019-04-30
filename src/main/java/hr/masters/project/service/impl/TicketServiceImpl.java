@@ -47,7 +47,7 @@ public class TicketServiceImpl implements TicketService
         }
     }
 
-    private boolean isTicketFailed(final OutcomeEnum outcome)
+    private boolean isTicketFailed(final String outcome)
     {
         if (outcome.equals(OutcomeEnum.NEGATIVE))
         {

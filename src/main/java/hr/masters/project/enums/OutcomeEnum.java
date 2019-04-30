@@ -2,9 +2,9 @@ package hr.masters.project.enums;
 
 public enum OutcomeEnum
 {
-    POSITIVE,
+    UPCOMING,
     NEGATIVE,
     IN_PROGRESS,
-    UPCOMING,
+    POSITIVE,
     DELAYED
 }

@@ -1,6 +1,5 @@
 package hr.masters.project.facades.impl;
 
-import hr.masters.project.enums.OutcomeEnum;
 import hr.masters.project.facades.MatchFacade;
 import hr.masters.project.forms.NewMatchForm;
 import hr.masters.project.model.MatchModel;
@@ -33,7 +32,7 @@ public class MatchFacadeImpl implements MatchFacade
         newMatch.setHomeTeam(newMatchForm.getHomeTeam());
         newMatch.setGuestTeam(newMatchForm.getGuestTeam());
         newMatch.setPrediction(newMatchForm.getPrediction());
-        newMatch.setOutcome(OutcomeEnum.IN_PROGRESS);
+        newMatch.setOutcome(newMatchForm.getOutcome());
         newMatch.setCoefficient(newMatchForm.getCoefficient());
         newMatch.setSport(newMatchForm.getSport());
         newMatch.setLeague(newMatchForm.getLeague());
