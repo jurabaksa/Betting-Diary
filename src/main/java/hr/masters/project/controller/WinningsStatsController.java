@@ -30,4 +30,13 @@ public class WinningsStatsController
         modelAndView.setViewName(Constants.Pages.WINNINGS_HISTORY);
         return modelAndView;
     }
+
+    @RequestMapping(value = Constants.Paths.VISUAL_STATS, method = RequestMethod.GET)
+    public ModelAndView displayVisualStats()
+    {
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser());
+        modelAndView.setViewName(Constants.Pages.VISUAL_STATS);
+        return modelAndView;
+    }
 }
