@@ -186,4 +186,16 @@ public class TicketFacadeImpl implements TicketFacade
                 .count());
         return chartValuesModel;
     }
+
+    @Override
+    public List<TicketModel> retrieveTicketsFromTo(final double winningStart, final double winningEnd)
+    {
+        final List<TicketModel> allTickets = ticketService.getTicketsByUser(userFacade.retrieveLoggedUser());
+        return allTickets
+                .stream()
+                .filter(ticket -> ticket.getWinning() > winningStart)
+                .filter(ticket -> ticket.getWinning() < winningEnd)
+                .collect(
+                        Collectors.toList());
+    }
 }

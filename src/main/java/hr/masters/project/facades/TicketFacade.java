@@ -24,4 +24,5 @@ public interface TicketFacade
 
     ChartValuesModel retrieveLosingTicketsByWinning();
 
+    List<TicketModel> retrieveTicketsFromTo(double winningStart, double winningEnd);
 }
