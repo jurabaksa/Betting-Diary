@@ -42,7 +42,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
             .antMatchers(Constants.Paths.IMG).permitAll()//
             .antMatchers(Constants.Paths.JS).permitAll()//
             .antMatchers(Constants.Paths.STYLE).permitAll()//
-            .antMatchers(Constants.Paths.BOOTSTRAP).permitAll()//
             .antMatchers(Constants.Paths.EMPTY).permitAll()//
             .antMatchers(Constants.Paths.ERROR).permitAll()//
             .antMatchers(Constants.Paths.FORGOT_PASSWORD).permitAll()//

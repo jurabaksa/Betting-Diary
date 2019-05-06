@@ -23,12 +23,4 @@ public class HomeController
         modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser());
         return modelAndView;
     }
-
-    @RequestMapping(Constants.Paths.BOOTSTRAP)
-    public ModelAndView displayBootstrapDesignSample()
-    {
-        final ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(Constants.Pages.BOOTSTRAP);
-        return modelAndView;
-    }
 }

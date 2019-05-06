@@ -28,7 +28,7 @@ public class PdfExportController
     private TicketFacade ticketFacade;
 
     @RequestMapping(value = Constants.Paths.PDF_EXPORT, method = RequestMethod.GET)
-    public ModelAndView displayVisualStats()
+    public ModelAndView displayPdfExportForm()
     {
         final ModelAndView modelAndView = new ModelAndView();
         modelAndView.getModelMap().addAttribute(USER_ATTRIBUTE, userFacade.retrieveLoggedUser());

@@ -40,8 +40,6 @@ public interface Constants
 
         String ERROR = "/error";
 
-        String BOOTSTRAP = "/bootstrap";
-
         String CSS = "/css/**";
 
         String FONTS = "/fonts/**";
@@ -83,8 +81,6 @@ public interface Constants
         String PROFILE_SETTINGS = "profileSettings";
 
         String HOME = "home";
-
-        String BOOTSTRAP = "bootstrap";
 
         String ERROR = "error";
 
