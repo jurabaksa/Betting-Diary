@@ -1,6 +1,7 @@
 package hr.masters.project.facades;
 
 import hr.masters.project.forms.NewTicketForm;
+import hr.masters.project.model.ChartValuesModel;
 import hr.masters.project.model.TicketModel;
 
 import java.util.List;
@@ -14,4 +15,13 @@ public interface TicketFacade
     void createNewTicket(final NewTicketForm newTicket);
 
     TicketModel retrieveTicket(String ticket);
+
+    ChartValuesModel retrieveWinningTicketsByStake();
+
+    ChartValuesModel retrieveWinningTicketsByWinning();
+
+    ChartValuesModel retrieveLosingTicketsByStake();
+
+    ChartValuesModel retrieveLosingTicketsByWinning();
+
 }
