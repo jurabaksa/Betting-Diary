@@ -35,10 +35,10 @@ public class DBLoader
         final RoleModel adminRole = createRole(Constants.Roles.ADMIN);
         final RoleModel userRole = createRole(Constants.Roles.USER);
         createUser(
-                "Jura",
-                "Baksa",
+                "Ime",
+                "Prezime",
                 "admin",
-                encodePassword("admin"),
+                encodePassword("admin1"),
                 "admin@mail.hr",
                 0,
                 adminRole
