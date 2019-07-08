@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "matches", schema = "betting_diary_db")
+@Table(name = "matches", schema = "nova")
 public class MatchModel
 {
     @Id

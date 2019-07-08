@@ -3,7 +3,7 @@ package hr.masters.project.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users", schema = "betting_diary_db")
+@Table(name = "users", schema = "nova")
 public class UserModel
 {
     @Id
